@@ -1,2 +1,8 @@
+build
 inst/doc
+temp
+.DS_Store
 .Rproj.user
+.gitignore
+.gitattributes
+*.jmo

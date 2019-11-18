@@ -1,0 +1,139 @@
+title: processR
+name: processR
+jus: '3.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Y variable
+        children:
+          - type: VariablesListBox
+            name: varY
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: X variable
+        children:
+          - type: VariablesListBox
+            name: varX
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Mediator(s)
+        children:
+          - type: VariablesListBox
+            name: varMed
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Covariate(s)
+        children:
+          - type: VariablesListBox
+            name: varCov
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Moderator variable W
+        children:
+          - type: VariablesListBox
+            name: varModW
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Moderator variable Z
+        children:
+          - type: VariablesListBox
+            name: varModZ
+            maxItemCount: 1
+            isTarget: true
+  - type: LayoutBox
+    margin: large
+    style: list
+    children:
+      - type: ComboBox
+        name: modNum
+      - type: ComboBox
+        name: cnfInt
+  - type: Label
+    label: Bootstrapping
+    children:
+      - type: ComboBox
+        name: botSmp
+      - type: CheckBox
+        name: botSav
+      - type: CheckBox
+        name: botCoe
+
+  - type: CollapseBox
+    margin: large
+    label: Options
+    collapsed: true
+    children:
+      - type: LayoutBox
+        margin: large
+        style: list
+        children:
+          - type: CheckBox
+            name: shwCvM
+          - type: CheckBox
+            name: visInt
+          - type: CheckBox
+            name: botCff
+          - type: CheckBox
+            name: pwCnId
+          - type: CheckBox
+            name: effSze
+          - type: CheckBox
+            name: stdCff
+          - type: CheckBox
+            name: intXxM
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: cntMnP
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: hetCns
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: decDig
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Moderation and conditioning
+            children:
+              - type: ComboBox
+                name: prbInt
+              - type: ComboBox
+                name: cndVal
+              - type: CheckBox
+                name: outJnN
+
+  - type: CollapseBox
+    margin: large
+    label: Multicategorical
+    collapsed: true
+    children:
+      - type: Label
+        label: Variable X (treatment to apply if X is categorical with three or more categories)
+        children:
+          - type: ComboBox
+            name: mctVrX
+      - type: Label
+        label: Variable W (treatment to apply if W is categorical with three or more categories)
+        children:
+          - type: ComboBox
+            name: mctVrW
+      - type: Label
+        label: Variable Z (treatment to apply if Z is categorical with three or more categories)
+        children:
+          - type: ComboBox
+            name: mctVrZ

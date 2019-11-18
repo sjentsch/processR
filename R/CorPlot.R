@@ -269,4 +269,3 @@ fit2alpha=function(fit,digits=3){
         lambda6=round(lambda6,digits)
         data.frame(latentVars,indicators,alpha,lambda6,stringsAsFactors = FALSE)
 }
-

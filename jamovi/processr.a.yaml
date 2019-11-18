@@ -1,0 +1,395 @@
+---
+name:  processR
+title: processR
+menuGroup: processR
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: varY
+      title: Y variable
+      type: Variable
+
+    - name: varX
+      title: X variable
+      type: Variable
+
+    - name: varMed
+      title: Mediator(s)
+      type: Variables
+
+    - name: varCov
+      title: Covariate(s)
+      type: Variables
+
+    - name: varModW
+      title: Moderator variable W
+      type: Variable
+
+    - name: varModZ
+      title: Moderator variable Z
+      type: Variable
+
+    - name: modNum
+      title: Model number
+      type: List
+      options:
+        - title: '0'
+          name:  mod0
+        - title: '1'
+          name:  mod1
+        - title: '2'
+          name:  mod2
+        - title: '3'
+          name:  mod3
+        - title: '4'
+          name:  mod4
+        - title: '4.2'
+          name:  mod4_2
+        - title: '4.3'
+          name:  mod4_3
+        - title: '5'
+          name:  mod5
+        - title: '6'
+          name:  mod6
+        - title: '6.3'
+          name:  mod6_3
+        - title: '6.4'
+          name:  mod6_4
+        - title: '7'
+          name:  mod7
+        - title: '8'
+          name:  mod8
+        - title: '9'
+          name:  mod9
+        - title: '10'
+          name:  mod10
+        - title: '11'
+          name:  mod11
+        - title: '12'
+          name:  mod12
+        - title: '13'
+          name:  mod13
+        - title: '14'
+          name:  mod14
+        - title: '15'
+          name:  mod15
+        - title: '16'
+          name:  mod16
+        - title: '17'
+          name:  mod17
+        - title: '18'
+          name:  mod18
+        - title: '19'
+          name:  mod19
+        - title: '20'
+          name:  mod20
+        - title: '21'
+          name:  mod21
+        - title: '22'
+          name:  mod22
+        - title: '23'     # not accessible via the GUI
+          name:  mod23
+        - title: '24'     # not accessible via the GUI
+          name:  mod24
+        - title: '25'     # not accessible via the GUI
+          name:  mod25
+        - title: '26'     # not accessible via the GUI
+          name:  mod26
+        - title: '27'     # not accessible via the GUI
+          name:  mod27
+        - title: '28'
+          name:  mod28
+        - title: '29'
+          name:  mod29
+        - title: '30'     # not accessible via the GUI
+          name:  mod30
+        - title: '31'     # not accessible via the GUI
+          name:  mod31
+        - title: '35'     # not accessible via the GUI
+          name:  mod35
+        - title: '36'     # not accessible via the GUI
+          name:  mod36
+        - title: '40'     # not accessible via the GUI
+          name:  mod40
+        - title: '41'     # not accessible via the GUI
+          name:  mod41
+        - title: '45'     # not accessible via the GUI
+          name:  mod45
+        - title: '49'     # not accessible via the GUI
+          name:  mod49
+        - title: '50'     # not accessible via the GUI
+          name:  mod50
+        - title: '58'
+          name:  mod58
+        - title: '58.2'
+          name:  mod58_2
+        - title: '59'
+          name:  mod59
+        - title: '60'
+          name:  mod60
+        - title: '61'
+          name:  mod61
+        - title: '62'
+          name:  mod62
+        - title: '63'
+          name:  mod63
+        - title: '64'
+          name:  mod64
+        - title: '65'
+          name:  mod65
+        - title: '66'
+          name:  mod66
+        - title: '67'
+          name:  mod67
+#       - title: '68'     # not yet implemented in processR
+#         name:  mod68
+#       - title: '69'     # not yet implemented in processR
+#         name:  mod69
+#       - title: '70'     # not yet implemented in processR
+#         name:  mod70
+#       - title: '71'     # not yet implemented in processR
+#         name:  mod71
+#       - title: '72'     # not yet implemented in processR
+#         name:  mod72
+#       - title: '73'     # not yet implemented in processR
+#         name:  mod73
+        - title: '74'     # disabled in PROCESS
+          name:  mod74
+        - title: '75'
+          name:  mod75
+        - title: '76'
+          name:  mod76
+#       - title: '80'     # not yet implemented in processR
+#         name:  mod80
+#       - title: '81'     # not yet implemented in processR
+#         name:  mod81
+#       - title: '82'     # not yet implemented in processR
+#         name:  mod82
+#       - title: '83'     # not yet implemented in processR
+#         name:  mod83
+#       - title: '84'     # not yet implemented in processR
+#         name:  mod84
+#       - title: '85'     # not yet implemented in processR
+#         name:  mod85
+#       - title: '86'     # not yet implemented in processR
+#         name:  mod86
+#       - title: '87'     # not yet implemented in processR
+#         name:  mod87
+#       - title: '88'     # not yet implemented in processR
+#         name:  mod88
+#       - title: '89'     # not yet implemented in processR
+#         name:  mod89
+#       - title: '90'     # not yet implemented in processR
+#         name:  mod90
+#       - title: '91'     # not yet implemented in processR
+#         name:  mod91
+#       - title: '92'     # not yet implemented in processR
+#         name:  mod92
+      default: mod1
+
+    - name: cnfInt
+      title: Confidence intervals
+      type: List
+      options:
+        - title: '90'
+          name:  cnf_90
+        - title: '95'
+          name:  cnf_95
+        - title: '99'
+          name:  cnf_99
+      default: cnf_95
+
+    - name: botSmp
+      title: Number of bootstrap samples
+      type: List
+      options:
+        - title: '0'
+          name:  bot__0
+        - title: '1000'
+          name:  bot_1k
+        - title: '2000'
+          name:  bot_2k
+        - title: '5000'
+          name:  bot_5k
+        - title: '10000'
+          name:  bot10k
+        - title: '20000'
+          name:  bot20k
+        - title: '50000'
+          name:  bot50k
+      default: bot_5k
+
+    - name: botSav
+      title: Save bootstrap estimates
+      type: Bool
+      default: false
+
+    - name: botCoe
+      title: Bootstrap inference for model coefficients
+      type: Bool
+      default: false
+
+    # CollapseBox - Options
+    - name: shwCvM
+      title: Show covariance matrix of regression coefficients
+      type: Bool
+      default: false
+    - name: visInt
+      title: Generate code for visualizing interactions
+      type: Bool
+      default: false
+    - name: shwTEM
+      title: Show total effect model (only models 4, 6, 80, 81, 82)
+      type: Bool
+      default: false
+    - name: pwCnId
+      title: Pairwise contrasts of indirect effects
+      type: Bool
+      default: false
+    - name: effSze
+      title: Effect size (mediation-only models)
+      type: Bool
+      default: false
+    - name: stdCff
+      title: Standardized coefficients (mediation-only models)
+      type: Bool
+      default: false
+    - name: intXxM
+      title: Test for X by M interaction(s)
+      type: Bool
+      default: false
+
+    - name: cntMnP
+      title: Mean center for construction of products
+      type: List
+      options:
+        - title: No centering
+          name:  cntNon
+        - title: All variables that define procducts
+          name:  cntAll
+        - title: Continucus variables that define products
+          name:  cntCnt
+      default: cntNon
+
+    - name: hetCns
+      title: Heteroscedasticity-consistent inference
+      type: List
+      options:
+        - title: None
+          name:  hetNon
+        - title: HC0 (Huber-White)
+          name:  hetHC0
+        - title: HC1 (Hinkley)
+          name:  hetHC1
+        - title: HC2
+          name:  hetHC2
+        - title: HC3 (Davidson-MacKinnon)
+          name:  hetHC3
+        - title: HC4 (Cribari-Neto)
+          name:  hetHC4
+      default: hetNon
+
+    - name: decDig
+      title: Decimal places in output
+      type: List
+      options:
+        - title: '2'
+          name:  decDg2
+        - title: '3'
+          name:  decDg3
+        - title: '4'
+          name:  decDg4
+        - title: '5'
+          name:  decDg5
+        - title: '6'
+          name:  decDg6
+        - title: '7'
+          name:  decDg7
+        - title: '8'
+          name:  decDg8
+      default: decDg4
+
+    # Layout box - Moderation and conditioning
+    - name: prbInt
+      title: Probe interactions...
+      type: List
+      options:
+        - title: always
+          name:  prbAlw
+        - title: if p < .20
+          name:  prbP20
+        - title: if p < .10
+          name:  prbP10
+        - title: if p < .05
+          name:  prbP05
+        - title: if p < .01
+          name:  prbP01
+      default: prbP10
+
+    - name: cndVal
+      title: Conditioning values
+      type: List
+      options:
+        - title: 16th, 50th, 84th percentiles
+          name:  cndPrc
+        - title: 1SD, Mean, +1SD
+          name:  cndSDv
+      default: cndPrc
+
+    - name: outJnN
+      title: Johnson-Neyman output
+      type: Bool
+      default: false
+
+
+    # CollapseBox - Multicategorical
+    - name: mctVrX
+      type: List
+      options:
+        - title: Not Multicategorical
+          name:  mctNnX
+        - title: Indicator
+          name:  mctInX
+        - title: Sequential
+          name:  mctSqX
+        - title: Helmert
+          name:  mctHlX
+        - title: Effect
+          name:  mctEfX
+      default: mctNnX
+
+    - name: mctVrW
+      type: List
+      options:
+        - title: Not Multicategorical
+          name:  mctNnW
+        - title: Indicator
+          name:  mctInW
+        - title: Sequential
+          name:  mctSqW
+        - title: Helmert
+          name:  mctHlW
+        - title: Effect
+          name:  mctEfW
+      default: mctNnW
+
+    - name: mctVrZ
+      type: List
+      options:
+        - title: Not Multicategorical
+          name:  mctNnZ
+        - title: Indicator
+          name:  mctInZ
+        - title: Sequential
+          name:  mctSqZ
+        - title: Helmert
+          name:  mctHlZ
+        - title: Effect
+          name:  mctEfZ
+      default: mctNnZ
+
+...

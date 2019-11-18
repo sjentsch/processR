@@ -1,0 +1,32 @@
+---
+title: R-Adaptation of Andrew Hayes' PROCESS-Macro
+name: processR
+version: 0.1.0
+jms: '1.0'
+authors:
+  - Sebastian Jentschke
+  - Keon-Woong Moon
+maintainer: Sebastian Jentschke <sebastian.jentschke@uib.no>
+date: '2019-10-24'
+type: R
+description: >-
+  The module re-implements (a subset of) the models and options described and
+  documented in Introduction to Mediation, Moderation, and Conditional Process
+  Analysis by Andrew Hayes (www.guilford.com/p/hayes3). The original software is
+  available for SPSS and SAS (processmacro.org). The current implementation 
+  creates a syntax for lavaan (lavaan.org) which then carries out the estimation
+  and provides functrionality for visualizing the results as concept and
+  statistical diagrams. The implementation tries to match the workflow and
+  processing steps described in the appendices of the book
+  (www.guilford.com/p/hayes3) with Appendix A containing the model number
+  templates for the implemented models and Appendix B giving instructions for
+  creating your own models or modifying numbered models (not all models and
+  options are implemented yet).
+analyses:
+  - title: processR
+    name: processR
+    ns: processR
+    menuGroup: processR
+    menuTitle: processR
+
+...
