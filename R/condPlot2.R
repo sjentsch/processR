@@ -9,8 +9,7 @@
 #' @param digits integer indicating the number of decimal places
 #' @param addlabel logical
 #' @param xvar character. "Z" or "W"
-#' @param ... Further arguments to be passed to predict3d::ggPredict()
-#' @importFrom predict3d ggPredict
+#' @param ... Further arguments to be passed to ggPredict()
 #' @export
 #' @examples
 #' fit=lm(govact~negemot*sex*age+posemot+ideology,data=glbwarm)

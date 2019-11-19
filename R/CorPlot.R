@@ -236,36 +236,34 @@ corPlot=function(fit,label=2,yreverse=TRUE,xangle=45,seek=NULL,replace=NULL,...)
     ggiraphExtra::ggCor(data=data,label=label,yreverse=yreverse,xangle=xangle,...)
 }
 
-
 #' Make a Cronbach alpha table
 #' @param fit An object of class lavaan. Result of sem function of package lavaan
 #' @param digits integer indicating the number of decimal places to be used.
 #'
-#' @importFrom psych alpha
 #' @importFrom stringr str_flatten
 #' @export
 fit2alpha=function(fit,digits=3){
-        df=as.data.frame(fit@ParTable,stringsAsFactors = FALSE)
-        df=df[df$op=="=~",c("lhs","rhs")]
+        df = as.data.frame(fit@ParTable,stringsAsFactors = FALSE)
+        df = df[df$op=="=~",c("lhs","rhs")]
 
         latentVars=unique(df$lhs)
         indicators=c()
         data=fit@Data@X[[1]]
         fit@Data@X[[1]]
-        colnames(data)=fit@Data@ov$name
-        data=data.frame(data)
+        colnames(data) = fit@Data@ov$name
+        data = data.frame(data)
         data
-        alpha<-lambda6<-c()
+        cron_alpha <- lambda6 <- c()
 
         for(i in seq_along(latentVars)){
             vars=df$rhs[df$lhs==latentVars[i]]
             indicators=c(indicators,stringr::str_flatten(vars,"+"))
             data[vars]
-            result=psych::alpha(data[vars],warnings=FALSE)
-            alpha=c(alpha,result$total$raw_alpha)
+            result = alpha(data[vars],warnings=FALSE)
+            cron_alpha = c(cron_alpha, result$total$raw_alpha)
             lambda6=c(lambda6,result$total$`G6(smc)`)
         }
-        alpha=round(alpha,digits)
+        cron_alpha = round(cron_alpha, digits)
         lambda6=round(lambda6,digits)
-        data.frame(latentVars,indicators,alpha,lambda6,stringsAsFactors = FALSE)
+        data.frame(latentVars, indicators, cron_alpha, lambda6, stringsAsFactors = FALSE)
 }

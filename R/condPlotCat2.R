@@ -5,8 +5,7 @@
 #' @param catlabels labels for direct/indirect effects
 #' @param digits Integer indicating the number of decimal places
 #' @param add.point logical. Whether or not add points to the plot
-#' @param ... further argumnets to be passed to predict3d::add_lines()
-#' @importFrom predict3d add_lines
+#' @param ... further argumnets to be passed to add_lines()
 #' @importFrom dplyr filter
 #' @export
 #' @examples

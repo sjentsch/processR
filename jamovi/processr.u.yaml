@@ -65,7 +65,6 @@ children:
         name: botSav
       - type: CheckBox
         name: botCoe
-
   - type: CollapseBox
     margin: large
     label: Options
@@ -80,9 +79,9 @@ children:
           - type: CheckBox
             name: visInt
           - type: CheckBox
-            name: botCff
-          - type: CheckBox
             name: pwCnId
+          - type: CheckBox
+            name: shwTEM
           - type: CheckBox
             name: effSze
           - type: CheckBox
@@ -116,24 +115,29 @@ children:
                 name: cndVal
               - type: CheckBox
                 name: outJnN
-
   - type: CollapseBox
     margin: large
     label: Multicategorical
     collapsed: true
     children:
       - type: Label
-        label: Variable X (treatment to apply if X is categorical with three or more categories)
+        label: >-
+          Variable X (treatment to apply if X is categorical with three or more
+          categories)
         children:
           - type: ComboBox
             name: mctVrX
       - type: Label
-        label: Variable W (treatment to apply if W is categorical with three or more categories)
+        label: >-
+          Variable W (treatment to apply if W is categorical with three or more
+          categories)
         children:
           - type: ComboBox
             name: mctVrW
       - type: Label
-        label: Variable Z (treatment to apply if Z is categorical with three or more categories)
+        label: >-
+          Variable Z (treatment to apply if Z is categorical with three or more
+          categories)
         children:
           - type: ComboBox
             name: mctVrZ

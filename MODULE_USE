@@ -1,28 +1,30 @@
-I        ggplot2	→  several occurences
-I        magrittr	→  two occurences: R/modelsSummary.R, R/modelsSummary2.R
-I        stringr	→  several occurences
-I        rlang		→  one occurence: R/mediationBK.R
+I        ggplot2	→ several occurences
+I        magrittr	→ two occurences: R/modelsSummary.R, R/modelsSummary2.R
+I        stringr	→ several occurences
+I        rlang		→ one occurence: R/mediationBK.R
 
-         diagram	→  several occurences
-         dplyr		→  several occurences
-         flextable	→  several occurences
-CM       predict3d	→  several occurences
-         purrr		→  several occurences
-         rrtable	→  several occurences
-         ztable		→  several occurences
+         diagram	→ several occurences
+         dplyr		→ several occurences
+         flextable	→ several occurences
+         purrr		→ several occurences
+         rrtable	→ several occurences
+         ztable		→ several occurences
 
-CM       mycor		→  two occurences: R/CorPlot.R, R/compareMC.R
+CM       mycor		→ two occurences: R/CorPlot.R, R/compareMC.R
 
-         car		→  one occurence: compareMC.R – VIF=car::vif(fit)
-         ggrepel	→  one occurence: condPlotCat.R
-         interactions	→  one occurence: condPlot.R
-         tidyr		→  one occurence: condPlot.R
-         ggiraphExtra	→  one occurence: CorPlot.R – ggiraphExtra::ggCor
+         car		→ one occurence: compareMC.R – VIF=car::vif(fit)
+         ggrepel	→ one occurence: condPlotCat.R
+         interactions	→ one occurence: condPlot.R
+         tidyr		→ one occurence: condPlot.R
+         psych		→ one occurence: CorPlot.R
+         ggiraph	→ one occurence: CorPlot.R
 http://www.sthda.com/english/wiki/ggplot2-quick-correlation-matrix-heatmap-r-software-and-data-visualization
-         psych		→  one occurence: CorPlot.R
-         readr		→  one occurence: makePPTx.R
-         rmarkdown	→  one occurence: makePPTx.R
-         bda		→  one occurence: mediationBK.R – bda::mediation.test
-         officer	→  one occurence: modelsSummary.R
-         tidyselect	→  one occurence: modelsSummary.R
-         semTools	→  one occurence: reliabilityTable.R
+         bda		→ one occurence: mediationBK.R – bda::mediation.test
+         officer	→ one occurence: modelsSummary.R
+         tidyselect	→ one occurence: modelsSummary.R
+         semTools	→ one occurence: reliabilityTable.R
+
+R        predict3d	→ several occurences
+R        ggiraphExtra	→ one occurence: CorPlot.R – ggiraphExtra::ggCor
+
+

@@ -9,7 +9,6 @@
 #'@param linesize numeric linesize
 #'@importFrom ggplot2 stat_function guides xlab ylab ggplot aes_string coord_fixed
 #'@importFrom ggplot2 geom_text aes theme_bw
-#'@importFrom predict3d theme_bw2
 #'@export
 conditionalEffectPlot=function(semfit,values=NULL,data,no=1,
                                mod=NULL,color=c("black","red"),lty=c(1,3),linesize=1){
@@ -72,7 +71,9 @@ conditionalEffectPlot=function(semfit,values=NULL,data,no=1,
         geom_text(data=df,aes_string(x="x",y="y",label="label",angle="angle"),color=color,fontface="italic",vjust=1.5)+
         guides(color=FALSE)+
         xlab(paste0(mod,"(W)"))+ylab("Conditional Effects")+
-        theme_bw2()
+        theme_bw() +
+        theme(panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank())
 }
 
 #'Make equation from function

@@ -6,8 +6,7 @@
 #' @param maxylev An integer. Maximum length of predictor variables to be treated as a categorical variable.
 #' @param digits An integer indicating the number of decimal places
 #' @param labels Optional list of labels of variables
-#' @param ... Further arguments to be passed to predict3d::fit2newdata()
-#' @importFrom predict3d fit2newdata
+#' @param ... Further arguments to be passed to fit2newdata()
 #' @importFrom stringr str_detect
 #' @export
 #' @examples

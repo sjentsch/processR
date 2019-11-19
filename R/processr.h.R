@@ -19,7 +19,7 @@ processROptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             botCoe = FALSE,
             shwCvM = FALSE,
             visInt = FALSE,
-            botCff = FALSE,
+            shwTEM = FALSE,
             pwCnId = FALSE,
             effSze = FALSE,
             stdCff = FALSE,
@@ -156,9 +156,9 @@ processROptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 "visInt",
                 visInt,
                 default=FALSE)
-            private$..botCff <- jmvcore::OptionBool$new(
-                "botCff",
-                botCff,
+            private$..shwTEM <- jmvcore::OptionBool$new(
+                "shwTEM",
+                shwTEM,
                 default=FALSE)
             private$..pwCnId <- jmvcore::OptionBool$new(
                 "pwCnId",
@@ -272,7 +272,7 @@ processROptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             self$.addOption(private$..botCoe)
             self$.addOption(private$..shwCvM)
             self$.addOption(private$..visInt)
-            self$.addOption(private$..botCff)
+            self$.addOption(private$..shwTEM)
             self$.addOption(private$..pwCnId)
             self$.addOption(private$..effSze)
             self$.addOption(private$..stdCff)
@@ -301,7 +301,7 @@ processROptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         botCoe = function() private$..botCoe$value,
         shwCvM = function() private$..shwCvM$value,
         visInt = function() private$..visInt$value,
-        botCff = function() private$..botCff$value,
+        shwTEM = function() private$..shwTEM$value,
         pwCnId = function() private$..pwCnId$value,
         effSze = function() private$..effSze$value,
         stdCff = function() private$..stdCff$value,
@@ -329,7 +329,7 @@ processROptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         ..botCoe = NA,
         ..shwCvM = NA,
         ..visInt = NA,
-        ..botCff = NA,
+        ..shwTEM = NA,
         ..pwCnId = NA,
         ..effSze = NA,
         ..stdCff = NA,
@@ -397,7 +397,7 @@ processRBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param botCoe .
 #' @param shwCvM .
 #' @param visInt .
-#' @param botCff .
+#' @param shwTEM .
 #' @param pwCnId .
 #' @param effSze .
 #' @param stdCff .
@@ -432,7 +432,7 @@ processR <- function(
     botCoe = FALSE,
     shwCvM = FALSE,
     visInt = FALSE,
-    botCff = FALSE,
+    shwTEM = FALSE,
     pwCnId = FALSE,
     effSze = FALSE,
     stdCff = FALSE,
@@ -481,7 +481,7 @@ processR <- function(
         botCoe = botCoe,
         shwCvM = shwCvM,
         visInt = visInt,
-        botCff = botCff,
+        shwTEM = shwTEM,
         pwCnId = pwCnId,
         effSze = effSze,
         stdCff = stdCff,

@@ -17,7 +17,6 @@
 #'@param digits integer indicating the number of decimal places
 #'@param depM logical If true, label M instead of X
 #'@param ... further arguments to be passed to add_lines
-#'@importFrom predict3d add_lines calEquation
 #'@importFrom tidyr crossing spread
 #'@importFrom ggplot2 geom_vline geom_segment geom_hline labs
 #'@importFrom grid arrow unit
@@ -453,3 +452,48 @@ plotCoef=function(ss,color="deepskyblue2",size=0.75,digits=1){
     coord_flip()
 }
 
+#'calculated slope and intercept from object of class lm
+#'@param fit An object of class lm
+#'@param mode A numeric
+#'@param pred name of predictor variable
+#'@param modx name of modifier variable
+#'@param modx.values Numeric. Values of modifier variable
+#'@param label A character string
+#'@param maxylev maximum length of unique value of variable to be treated as a categorial variable
+#'@param digits Integer indicating the number of decimal places
+#'@export
+#'@examples
+#'fit=lm(mpg~wt*hp+carb,data=mtcars)
+#'calEquation(fit)
+#'calEquation(fit,pred="hp")
+calEquation=function(fit,mode=1,pred=NULL,modx=NULL,modx.values=NULL,label=NULL,maxylev=6,digits=2){
+          # pred=NULL;modx=NULL;modx.values=NULL;maxylev=6;label=NULL;digits=2;mode=2
+        data=fit$model
+
+        if(is.null(pred)) pred=names(data)[2]
+        if(is.null(modx)) modx=setdiff(names(data)[2:3],pred)
+       if(is.null(modx.values)) {
+             if(length(unique(data[[modx]]))<maxylev){
+                 modx.values=sort(unique(data[[modx]]))
+             } else if(mode==1) {
+                  modx.values=mean(data[[modx]],na.rm=TRUE)+c(-1,0,1)*sd(data[[modx]],na.rm=TRUE)
+             } else if(mode==2){
+                  modx.values=quantile(data[[modx]],probs=c(0.14,0.5,0.86),type=6)
+             }
+        }
+        modx
+        if(is.null(label)) label=modx
+        intercept=modx.values*fit$coef[modx]+fit$coef[1]
+        ncol(data)
+        names(data)
+        if(ncol(data)>3){
+            for(i in 4:ncol(data)){
+               intercept=intercept+fit$coef[names(data)[i]]*mean(data[[i]],na.rm=TRUE)
+            }
+        }
+        select=which(stringr::str_detect(names(fit$coef),":"))[1]
+        slope=modx.values*fit$coef[select]+fit$coef[pred]
+        labels=paste0(label,"=",round(modx.values,digits))
+        df=data.frame(intercept,slope,label=labels)
+        df
+}
