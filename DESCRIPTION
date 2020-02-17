@@ -1,10 +1,10 @@
 Package: processR
 Type: Package
 Title: R-Adaptation of Andrew Hayes' PROCESS-Macro
-Version: 0.2.2.5
-Date: 2019-11-11
-Author: Sebastian Jentschke
-        Keon-Woong Moon
+Version: 0.2.3
+Date: 2020-02-17
+Author: Keon-Woong Moon
+        Sebastian Jentschke
 Authors@R: c(person("Keon-Woong","Moon",      role=c("aut", "cre"), email="cardiomoon@gmail.com"),
              person("Sebastian", "Jentschke", role=c("aut"),        email="sebastian.jentschke@uib.no"),
              person("Sokyoung",  "Hong",      role=c("ctb"),        email="hsychild@hanmail.net"))
@@ -12,35 +12,31 @@ Maintainer: Sebastian Jentschke <sebastian.jentschke@uib.no>
 URL: https://github.com/cardiomoon/processR
 BugReports: https://github.com/cardiomoon/processR/issues
 Description: Performs moderation, mediation, moderated mediation and moderated moderation. The library re-implements (a subset of) the models and options described and documented in Introduction to Mediation, Moderation, and Conditional Process Analysis by Andrew Hayes (www.guilford.com/p/hayes3). The original software is available for SPSS and SAS (processmacro.org). The current implementation creates a syntax for lavaan (lavaan.org) which then carries out the estimation and provides functrionality for visualizing the results as concept and statistical diagrams. The implementation tries to match the workflow and processing steps described in the appendices of the book (www.guilford.com/p/hayes3) with Appendix A containing the model number templates for the implemented models and Appendix B giving instructions for creating your own models or modifying numbered models (NB - not all models and options are implemented yet).
-Depends:
-    R (>= 2.10)
-License: GPL (>= 2)
+Depends:  R (>= 2.10)
+License:  GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
-Imports: jmvcore (>= 0.8.5),
-         R6,
-         lavaan(>= 0.6-6),
-         bda,
-         car,
-         diagram,
-         dplyr,
-         flextable,
-         ggiraph,
-         ggplot2(>= 3.1.1),
-         ggrepel,
-         interactions,
-         magrittr,
-         mycor,
-         officer,
-         purrr,
-         rrtable,
-         semTools,
-         stringr,
-         tidyselect,
-         rlang,
-         tidyr,
-         TH.data,
-         ztable
-RoxygenNote: 6.1.1
-Suggests: knitr
+Imports:  jmvcore (>= 0.8.5),
+          R6,
+          lavaan,
+          diagram,
+          dplyr,
+          flextable,
+          ggplot2(>= 3.1.1),
+          ggrepel,
+          interactions,
+          officer,
+          purrr,
+          rrtable,
+          semTools,
+          stringr,
+          TH.data,
+          tidyselect,
+          rlang,
+          ztable
+RoxygenNote: 7.0.2
+Suggests: knitr,
+          readr
 VignetteBuilder: knitr
+
+#O        tidyr,

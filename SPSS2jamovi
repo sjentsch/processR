@@ -1,0 +1,40 @@
+ (i.e., process y= yvar /x= xvar [/m= mvlist ] [/w= wvar ] [/z= zvar ] [/model= num ] [/cov= covlist ] [/wmodval= wval ] [/zmodval= zval ] [/boot= z (5000**)] [/maxboot= maxz (10000**)] [/mc= g (0**)] [/conf= ci (95**)] [/effsize=(0**)(1)] [/normal=(0**)(1)] [/jn=(0**)(1)] [/hc=(0**)(1)(2)(3)(4)] [/covmy=(0**)(1)(2)] [/total=(0**)(1)] [/center=(0**)(1)] [/covcoeff=(0**)(1)] [/moments=(0**)(1)])
+data=      
+varX    → /x= 
+varY    →  y=
+varCov  → /cov= (list)  
+varMed  → /m=   (list)
+varModZ → /z=
+varModW → /w=  
+modNum  → /model=
+botCoe  → Bootstrap inference for model coefficients
+botSav  → (save bootstrap estimates)                
+botSmp  → /maxboot=maxz(10000**) 
+cntMnP 
+cndVal
+cnfInt  → /conf= ci (95**)
+decDig  →
+effSze  → /effsize=(0**)(1)
+hetCns  → /hc=(0**)(1)(2)(3)(4)
+intXxM
+mctVrX
+mctVrW
+mctVrZ
+outJnN
+prbInt
+pwCnId
+shwCvM  → /covcoeff=(0**)(1)
+shwTEM  → /total=(0**)(1)
+stdCff
+visInt  → Generate code for visualizing interactions
+
+[/boot= z (5000**)]
+/wmodval=
+/zmodval=
+[/mc= g (0**)]
+[/normal=(0**)(1)]
+[/jn=(0**)(1)]
+[/covmy=(0**)(1)(2)]
+[/center=(0**)(1)]
+[/moments=(0**)(1)]
+

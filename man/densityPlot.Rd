@@ -4,8 +4,13 @@
 \alias{densityPlot}
 \title{Draw Smoothed Kernel density plot}
 \usage{
-densityPlot(x, sig = 0.05, digits = 3, xlab = "Indirect effect(ab)",
-  ylab = NULL)
+densityPlot(
+  x,
+  sig = 0.05,
+  digits = 3,
+  xlab = "Indirect effect(ab)",
+  ylab = NULL
+)
 }
 \arguments{
 \item{x}{A numeric vector}
@@ -25,9 +30,11 @@ Draw Smoothed Kernel density plot
 require(lavaan)
 labels=list(X="cond",M="pmi",Y="reaction")
 model=tripleEquation(labels=labels)
+\donttest{
 set.seed(1234)
 semfit=sem(model,data=pmi,se="boot",bootstrap=100)
 bootData=getBootData(semfit)
 bootData$indirect=bootData$a*bootData$b
 densityPlot(bootData$indirect)
+}
 }

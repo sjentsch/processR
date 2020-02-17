@@ -4,8 +4,17 @@
 \alias{jnPlot}
 \title{Draw johnson_neyman plot}
 \usage{
-jnPlot(fit, pred = NULL, modx = NULL, digits = 3, plot = FALSE,
-  mode = 1, xvar = "Z", addEq = FALSE, ...)
+jnPlot(
+  fit,
+  pred = NULL,
+  modx = NULL,
+  digits = 3,
+  plot = FALSE,
+  mode = 1,
+  xvar = "Z",
+  addEq = FALSE,
+  ...
+)
 }
 \arguments{
 \item{fit}{A regression model}
@@ -32,9 +41,11 @@ Draw johnson_neyman plot
 \examples{
 fit=lm(mpg~hp*wt,data=mtcars)
 jnPlot(fit)
+\donttest{
 fit=lm(justify~frame*skeptic,data=disaster)
 res=jnPlot(fit)
 res$plot
 fit=lm(govact~negemot*sex*age+posemot+ideology,data=glbwarm)
 jnPlot(fit,pred="negemot:sex",modx="age",mode=2,addEq=TRUE)
+}
 }

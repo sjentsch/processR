@@ -4,8 +4,13 @@
 \alias{modmedSummary}
 \title{Summarize the moderated mediation}
 \usage{
-modmedSummary(semfit, mod = NULL, values = NULL,
-  boot.ci.type = "perc", add.range = TRUE)
+modmedSummary(
+  semfit,
+  mod = NULL,
+  values = NULL,
+  boot.ci.type = "perc",
+  add.range = TRUE
+)
 }
 \arguments{
 \item{semfit}{An object of class lavaan}
@@ -30,9 +35,9 @@ labels=list(X="frame",M="justify",Y="donate",W="skeptic")
 moderator=list(name="skeptic",site=list(c("a","c")))
 model=tripleEquation(labels=labels,moderator=moderator)
 cat(model)
+\donttest{
 semfit=sem(model,data=disaster,se="boot",bootstrap=100)
 modmedSummary(semfit)
-\donttest{
 conditionalEffectPlot(semfit,data=disaster)
 labels=list(X="dysfunc",M="negtone",Y="perform",W="negexp")
 moderator=list(name="negexp",site=list("b"))

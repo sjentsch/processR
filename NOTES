@@ -1,0 +1,3 @@
+R/showModels.R removed (starts the shiny-App)
+R/makePPTx.R removed (exports the PPTx file)
+

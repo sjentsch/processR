@@ -4,8 +4,7 @@
 \alias{medSummary}
 \title{Summarize the mediation effects}
 \usage{
-medSummary(semfit, boot.ci.type = "perc", effects = c("indirect",
-  "direct"))
+medSummary(semfit, boot.ci.type = "perc", effects = c("indirect", "direct"))
 }
 \arguments{
 \item{semfit}{An object of class lavaan}
@@ -24,7 +23,9 @@ Summarize the mediation effects
 library(lavaan)
 labels=list(X="cond",M="pmi",Y="reaction")
 model=tripleEquation(labels=labels)
+\donttest{
 semfit=sem(model=model,data=pmi, se="boot", bootstrap=100)
 medSummary(semfit)
 medSummary(semfit,boot.ci.type="all")
+}
 }

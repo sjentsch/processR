@@ -4,9 +4,19 @@
 \alias{condPlot2}
 \title{Draw conditional plot for moderated moderation}
 \usage{
-condPlot2(fit, pred = NULL, modx = NULL, mod2 = NULL,
-  mod2.values = NULL, rangemode = 1, vjust = NULL, digits = 3,
-  addlabel = TRUE, xvar = "Z", ...)
+condPlot2(
+  fit,
+  pred = NULL,
+  modx = NULL,
+  mod2 = NULL,
+  mod2.values = NULL,
+  rangemode = 1,
+  vjust = NULL,
+  digits = 3,
+  addlabel = TRUE,
+  xvar = "Z",
+  ...
+)
 }
 \arguments{
 \item{fit}{An object of class lm}
@@ -37,7 +47,9 @@ Draw conditional plot for moderated moderation
 \examples{
 fit=lm(govact~negemot*sex*age+posemot+ideology,data=glbwarm)
 condPlot2(fit)
+\donttest{
 condPlot2(fit,mod2.values = c(30,50,70))
 fit1=lm(govact~negemot*age*sex+posemot+ideology,data=glbwarm)
 condPlot2(fit1,pred="negemot",modx="sex",mod2="age",mod2.values = c(30,50,70),xvar="W")
+}
 }

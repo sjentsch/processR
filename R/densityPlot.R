@@ -3,15 +3,22 @@
 #' @param what Character. What needs to be inspected/extracted?
 #' @param ... Further argument to be passed to lavaan::lavTech()
 #' @importFrom lavaan lavTech
+#' @importFrom utils packageVersion
 #' @export
 #' @examples
 #' require(lavaan)
 #' labels=list(X="cond",M="pmi",Y="reaction")
 #' model=tripleEquation(labels=labels)
+#' \donttest{
 #' set.seed(1234)
 #' semfit=sem(model,data=pmi,se="boot",bootstrap=100)
 #' getBootData(semfit)
+#' }
 getBootData=function(semfit,what="coef.boot",...){
+    if(packageVersion("lavaan")<"0.6.5.1453") {
+        cat("To use this function, please install the latest 'lavaan' package using the following R code.\n")
+        cat("install.packages('lavaan',repos='http://www.da.ugent.be',type='source')\n")
+    }
     as.data.frame(lavTech(semfit, what=what, add.labels = TRUE,...))
 }
 
@@ -28,11 +35,13 @@ getBootData=function(semfit,what="coef.boot",...){
 #' require(lavaan)
 #' labels=list(X="cond",M="pmi",Y="reaction")
 #' model=tripleEquation(labels=labels)
+#' \donttest{
 #' set.seed(1234)
 #' semfit=sem(model,data=pmi,se="boot",bootstrap=100)
 #' bootData=getBootData(semfit)
 #' bootData$indirect=bootData$a*bootData$b
 #' densityPlot(bootData$indirect)
+#' }
 densityPlot=function(x,sig=0.05,digits=3,xlab="Indirect effect(ab)",ylab=NULL){
     if(is.null(ylab)){
         ylab=paste0("Smoothed Kernel density estimates \nin ",length(x)," bootstrap samples")
