@@ -139,14 +139,13 @@
         item.means <- colMeans(x, na.rm=na.rm )
         item.sd <-  apply(x,2,sd,na.rm=na.rm)
         if(nsub > nvar) {
-         Unidim <- alpha.total[7]
-         var.r <- alpha.total[[9]]
-        	 Fit.off <- alpha.total[8]
-            ase = sqrt(alpha.total$Q/nsub)
-        	alpha.total <- data.frame(alpha.total[1:5],ase=ase,mean=mean.t,sd=sdev)
+           Unidim <- alpha.total[7]
+           var.r <- alpha.total[[9]]
+	   Fit.off <- alpha.total[8]
+           ase = sqrt(alpha.total$Q/nsub)
+           alpha.total <- data.frame(alpha.total[1:5],ase=ase,mean=mean.t,sd=sdev)
            colnames(alpha.total) <- c("raw_alpha","std.alpha","G6(smc)","average_r","S/N","ase","mean","sd")
-        	
-        	  
+	  
         	 alpha.total <- data.frame(alpha.total[1:5],ase=ase,mean=mean.t,sd=sdev)
         	colnames(alpha.total) <- c("raw_alpha","std.alpha","G6(smc)","average_r","S/N","ase","mean","sd")
         	rownames(alpha.total) <- ""
@@ -243,7 +242,6 @@
    print(result,digits=digits)
    invisible(result)
 }
-
 
 #' Variance Inflation Factors
 #' Calculates variance-inflation and generalized variance-inflation factors for linear, generalized linear, and other models.
