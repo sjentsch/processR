@@ -46,8 +46,6 @@
 #'}
 "moreModels"
 
-
-
 #' Arrow Data Set for drawing statistical diagram of process macro model
 #'
 #'@format A data.frame with 392 rows and 6 variables
@@ -60,6 +58,47 @@
 #'   \item{arrowpos}{position of arrow head}
 #'}
 "parrows"
+
+#'Teacher Efficacy Data
+#'
+#'A dataset containing teacher efficacy, social suppot, psychological wellbeing and job stress of 247 teachers working in kindergarten
+#'
+#'@format A data.frame with 247 rows and 7 variables:
+#'\describe{
+#'  \item{age}{teacher's age. 1: 20-24, 2: 25-29, 3: 30-34, 4: 35-39, 5: 40-44, 6:45-49, 7: 50 or above }
+#'  \item{marriage}{Marital Status. 0: single, 2: married}
+#'  \item{children}{Parental Status. 0: no children, 1: one or more children}
+#'  \item{wellbeing}{Psychological Well-being}
+#'  \item{stress}{Job stress. A response syndrome of negative affects(such as anger or depression) resulting from the teacher's job}
+#'  \item{efficacy}{Teacher Efficacy. A judgement of his or her capabilities to bring about desired outcomes of student engagement and learning}
+#'  \item{support}{Social Support. Various resources provided by ones's interpersonal ties.}
+#'}
+#'@source {Cohen, S., & Hoberman, H. M. (1983). Positive events and social support as butters of life change stress. Journal of Social Applied Psychology, 13, 99-125}
+#'@source {Tschannen-Moran, M., & Hoy, A. W. (2001). Teacher efficacy: Capturing an elusive construct. Teaching and teacher education, 17(7), 783-805}
+#'@source {Ryff, Carol D. (1989). Happiness Is Everything, or Is It? Explorationson the Meaning of Psychological Well-Being. Journal of-Personality and Social Psychology, 57, 1069-1081}
+#'@source {Kyriacou, C., & Sutcliffe, J. (1978). Teacher stress: Prevalence, sources, and symptoms. British Journal of Educational Psychology, 55, 61-64}
+"teachers"
+
+#'GBSG2
+#'
+#'German Breast Cancer Study Group 2
+#'Description: A data frame containing the observations from the GBSG2 study.
+#'
+#'@format This data.frame contains the observations of 686 women:
+#'\describe{
+#'  \item{horTh}{hormonal therapy, a factor at two levels: no, yes}
+#'  \item{age}{of the patients in years}
+#'  \item{menostat}{menopausal status, a factor at two levels pre (premenopausal) and post (postmenopausal)}
+#'  \item{tsize}{tumor size (in mm)}
+#'  \item{tgrade}{tumor grade, a ordered factor at levels: I < II < III}
+#'  \item{pnodes}{number of positive nodes}
+#'  \item{progrec}{progesterone receptor (in fmol)}
+#'  \item{estrec}{estrogen receptor (in fmol)}
+#'  \item{time}{recurrence free survival time (in days)}
+#'  \item{cens}{censoring indicator (0- censored, 1- event)}
+#'@source {W. Sauerbrei and P. Royston (1999). Building multivariable prognostic and  diagnostic  models: transformation of the predictors by using fractional polynomials. Journal of the Royal Statistics Society Series A, Volume 162(1), 71–94}
+#'@source {M. Schumacher, G. Basert, H. Bojar, K. Huebner, M. Olschewski, W. Sauerbrei, C. Schmoor, C. Beyerle, R. L. A. Neumann and H. F. Rauschecker for the German Breast Cancer Study Group (1994), Randomized 2×2 trial evaluating hormonal treatment and the duration of chemotherapy in node-positive breast cancer patients. Journal of Clinical Oncology, 12, 2086–2093.}
+"GBSG2"
 
 #' Teams data set
 #'

@@ -213,7 +213,6 @@ expand.grid2=function(df1,df2){
 #'mtcars$engine=ifelse(mtcars$vs==0,"V-shaped","straight")
 #'fit=lm(mpg~wt*engine,data=mtcars)
 #'ggPredict(fit)
-#'require(TH.data)
 #'fit=glm(cens~pnodes*horTh,data=GBSG2,family=binomial)
 #'ggPredict(fit,pnodes,horTh,se=TRUE,xpos=c(0.6,0.3),angle=c(40,60),vjust=c(2,-0.5))
 #'fit1=glm(cens~pnodes,data=GBSG2,family=binomial)
