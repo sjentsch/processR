@@ -17,7 +17,6 @@
 #'@param digits integer indicating the number of decimal places
 #'@param depM logical If true, label M instead of X
 #'@param ... further arguments to be passed to add_lines
-#'@importFrom tidyr crossing spread
 #'@importFrom ggplot2 geom_vline geom_segment geom_hline labs
 #'@importFrom grid arrow unit
 #'@importFrom stats sd
@@ -125,7 +124,7 @@ condPlot=function(fit,xmode=1,pred=NULL,modx=NULL,pred.values=NULL,modx.values=N
   df1[[pred]]=pred.values
   df1
 
-  df=tidyr::crossing(pred.values,modx.values)
+  df=crossing(pred.values,modx.values)
   df
   names(df)=c(pred,modx)
   df
@@ -324,8 +323,7 @@ condPlot=function(fit,xmode=1,pred=NULL,modx=NULL,pred.values=NULL,modx.values=N
 #' @param mode integer 1 or 2
 #' @param addEq logical
 #' @param xvar Name of xvar
-#' @param ... Further argumant to be passed to interactions::johnson_neyman()
-#' @importFrom interactions johnson_neyman
+#' @param ... Further argumant to be passed to johnson_neyman()
 #' @export
 #' @examples
 #' fit=lm(mpg~hp*wt,data=mtcars)
@@ -363,9 +361,9 @@ jnPlot=function(fit,pred=NULL,modx=NULL,digits=3,plot=FALSE,mode=1,xvar="Z",addE
     pred=newvar
   }
 
-  temp=paste0("interactions::johnson_neyman(fit,pred=",pred,",modx=",modx,
+  temp=paste0("johnson_neyman(fit,pred=",pred,",modx=",modx,
               ",digits=",digits,",...)")
-  # temp=paste0("interactions::johnson_neyman(fit,pred=",pred,",modx=",modx,
+  # temp=paste0("johnson_neyman(fit,pred=",pred,",modx=",modx,
   #             ",digits=",digits,")")
   res=eval(parse(text=temp))
   p<-res$plot

@@ -339,7 +339,6 @@ getCatSlopeDf=function(labels=NULL,data,yvar="Y",total=FALSE,addvars=TRUE,
 #' @param ceno integer. 1 or 2
 #' @importFrom stats reorder
 #' @importFrom ggplot2 ggplot geom_point geom_curve
-#' @importFrom ggrepel geom_text_repel
 #' @export
 #' @examples
 #' \donttest{
@@ -439,8 +438,8 @@ condPlotCat=function(labels=list(),yvar="Y",total=FALSE,data,addvars=TRUE,mode=1
   p
   if(add.point){
     p<-p+ geom_point(data=df,aes_string(x="x",y="y",color="group1"),size=2)+
-      geom_text_repel(data=df,aes_string(x="x",y="y",label="label",color="group1"),
-                      box.padding=1)+
+#     geom_text_repel(data=df,aes_string(x="x",y="y",label="label",color="group1"),box.padding=1)+
+      geom_text(data=df,aes_string(x="x",y="y",label="label",color="group1"),box.padding=1)+
       theme(legend.position="top",legend.title = element_blank())
   }
   p

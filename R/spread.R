@@ -1,7 +1,6 @@
 #' Spread a key-value pair across multiple columns
 #'
 #' @description
-#' \Sexpr[results=rd, stage=render]{lifecycle::badge("retired")}
 #'
 #' Development on `spread()` is complete, and for new code we recommend
 #' switching to `pivot_wider()`, which is easier to use, more featureful, and
@@ -142,12 +141,10 @@ col_names <- function(x, sep = NULL) {
     paste(names(x)[[1]], names, sep = sep)
   }
 }
-
 as_tibble_matrix <- function(x) {
   # getS3method() only available in R >= 3.3
   get("as_tibble.matrix", asNamespace("tibble"), mode = "function")(x)
 }
-
 split_labels <- function(df, id, drop = TRUE) {
   if (length(df) == 0) {
     return(df)
@@ -163,7 +160,6 @@ split_labels <- function(df, id, drop = TRUE) {
     rev(expand.grid(rev(unique_values), stringsAsFactors = FALSE))
   }
 }
-
 ulevels <- function(x) {
   if (is.factor(x)) {
     orig_levs <- levels(x)
@@ -176,4 +172,3 @@ ulevels <- function(x) {
     sort(unique(x), na.last = TRUE)
   }
 }
-

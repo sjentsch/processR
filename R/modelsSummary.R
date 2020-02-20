@@ -496,7 +496,6 @@ centerPrint=function(string,width){
 #'Make number subscript
 #'@param ft An object of class flextable
 #'@param label string vector
-#'@importFrom officer fp_text
 #'@importFrom flextable display
 #'@importFrom stringr str_extract
 numberSubscript=function(ft,label){
@@ -516,7 +515,6 @@ numberSubscript=function(ft,label){
 #' @param x An object of class modelSummary
 #' @param vanilla A logical
 #' @param ... further arguments to be passed to modelsSummary()
-#' @importFrom officer fp_border
 #' @importFrom flextable flextable merge_h_range align hline_top hline add_header
 #' @importFrom flextable bold fontsize width italic set_header_labels add_header_row
 #' @importFrom flextable theme_zebra vline_left
@@ -545,7 +543,6 @@ modelsSummaryTable=function(x=NULL,vanilla=TRUE,...){
       # vanilla=TRUE
       # require(tidyverse)
       # require(flextable)
-      # require(officer)
       # x=modelsSummary(list(fit1,fit2))
     if(is.null(x)) {
        x=modelsSummary(...)
