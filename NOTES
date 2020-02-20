@@ -1,31 +1,72 @@
+diagram		→ several occurences
+dplyr		→ several occurences
+flextable	→ several occurences
+ggplot2		→ several occurences
+purrr		→ several occurences
+rlang		→ several occurences
+rrtable		→ several occurences
+stringr		→ several occurences
+tidyselect	→ several occurences
+ztable		→ several occurences
+
+in addition: graphics, grid, stats, utils which are base packages
+
+=================================================================
+
+CHECK FOR USED PACKAGES:
+
+grep "\:\:" *.R | cut -d: -f2- | grep -v "jmvcore::" | grep -v "stringr::" | grep -v "R6::R6Class" | grep -v "flextable::" | grep -v "rrtable::" | grep -v "tidyselect::" | grep -v "ggplot2::" | grep -v "lavaan::" | grep "\:\:"
+
+YET UNRESOLVED:
+johnson_neyman.R
+lme4::fixef(model)
+
+=================================================================
+
+FILES REMOVED:
 R/showModels.R	removed (starts the shiny-App)
 R/makePPTx.R	removed (exports the PPTx file)
 
-ggrepel: 	used in condPlotCat.R   	→ changed to geom_text
+=================================================================
+
+FILES CHANGED BY cardiomoon
+predict3d and ggiraphExtra:
+predict3d	→ functions fit2newdata, add_lines, calEquation, theme_bw2 moved to internal.R (cardiomoon did)
+ggiraphExtra	→ function  ggCor moved to internal (cardiomoon did)
+
+=================================================================
+
+FILES MANUALLY CHANGED
+R/condPlotCat.R   	→ changed to geom_text (in order to remove dependency for ggrepel)
 
 interactions	used in condPlot.R		→ download from https://raw.githubusercontent.com/jacob-long/interactions/master/R/johnson_neyman.R
 						→ remove print.johnson_neyman function
 
+=================================================================
+
 psych		used in CorPlot.R
 curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/CorPlot.R | grep -v "importFrom psych alpha" | sed "s/psych::alpha/alpha/" | sed "s/alpha<-/cron_alpha<-/" | sed "s/alpha=c(alpha/cron_alpha=c(cron_alpha/" | sed "s/alpha=round(alpha/cron_alpha=round(cron_alpha/" | sed "s/indicators,alpha,lambda6/indicators,cron_alpha,lambda6/" > CorPlot.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cran/psych/master/R/alpha.R\n#\n" >> CorPlot.R && curl -s https://raw.githubusercontent.com/cran/psych/master/R/alpha.R >> CorPlot.R
 
+=================================================================
 
 semTools	used in reliabilityTable.R
 echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R\n#" > reliabilityTable.R && curl -s https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R | grep "^pmnorm" -A14 >> reliabilityTable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R | sed "s/mnormt::pmnorm/pmnorm/g" >> reliabilityTable.R && echo -e "\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R | grep -v "importFrom semTools reliability" | sed "s/semTools::reliability/reliability/g" >> reliabilityTable.R
+
+=================================================================
 
 tidyr 		used in condPlot.R
 echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/tidyverse/tibble/master/R/as_tibble.R\n#\n" > expand.R && curl -s https://raw.githubusercontent.com/tidyverse/tibble/master/R/as_tibble.R >> expand.R && echo -e "\n\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/tidyverse/tidyr/master/R/expand.R\n#\n" >> expand.R && curl -s https://raw.githubusercontent.com/tidyverse/tidyr/master/R/expand.R | sed "s/tibble::as_tibble/as_tibble/g" >> expand.R
 curl -s https://raw.githubusercontent.com/tidyverse/tidyr/master/R/spread.R | grep -v "lifecycle::badge" > spread.R
 
+=================================================================
+
 predict3d	download and modify ggPredict.R
 echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/leeper/prediction/master/R/seq_range.R\n#" > ggPredict.R && curl -s https://raw.githubusercontent.com/leeper/prediction/master/R/seq_range.R >> ggPredict.R && echo -e "\n# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/tidyverse/modelr/master/R/typical.R\n#" >> ggPredict.R && curl -s https://raw.githubusercontent.com/tidyverse/modelr/master/R/typical.R >> ggPredict.R &&  echo -e "\n# ------------------------------------------------------------------------------\n# All content below is from the original main file\n# from https://raw.githubusercontent.com/cardiomoon/predict3d/master/R/ggPredict.R\n#" >> ggPredict.R && curl -s https://raw.githubusercontent.com/cardiomoon/predict3d/master/R/ggPredict.R | sed "s/magrittr/stringr/g" | grep -v "prediction seq_range" | sed 's/modelr::typical/typical/g' | grep -v "modelr typical" >> ggPredict.R
 
+=================================================================
 
 officer		used in modelsSummary.R
 curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/modelsSummary.R | grep -v "require(officer)" | grep -v "importFrom officer" > modelsSummary.R
 wget https://raw.githubusercontent.com/davidgohel/officer/master/R/formatting_properties.R
 
-
-predict3d and ggiraphExtra:
-predict3d	→ functions fit2newdata, add_lines, calEquation, theme_bw2 moved to internal.R (cardiomoon did)
-ggiraphExtra	→ function  ggCor moved to internal (cardiomoon did)
+=================================================================
