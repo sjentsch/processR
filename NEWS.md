@@ -1,4 +1,4 @@
-## R package processR version 0.2.3
+## R package processR version 0.2.3.1
 ===================================
 (2020-Feb-23)
 
