@@ -1,5 +1,14 @@
 ## R package processR version 0.2.3
 ===================================
+(2020-Feb-23)
+
+- worked on further removing dependencies
+
+- started implementing jamovi results
+
+
+## R package processR version 0.2.3
+===================================
 (2020-Jan-25)
 
 - Bug fixed
