@@ -54,6 +54,6 @@ modSummary2=function(fit,rangemode=2,pred.values=NULL,summarymode=2,maxylev=6,di
 #' modSummary2Table(fit)
 modSummary2Table=function(x,vanilla=TRUE,...){
     if("lm" %in% class(x)) x=modSummary2(x,...)
-    rrtable::df2flextable(x,vanilla=vanilla)
+    df2flextable(x,vanilla=vanilla)
 }
 

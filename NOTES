@@ -4,13 +4,23 @@ flextable	→ several occurences
 ggplot2		→ several occurences
 purrr		→ several occurences
 rlang		→ several occurences
-rrtable		→ several occurences
 stringr		→ several occurences
 tidyselect	→ several occurences
-ztable		→ several occurences
 
 in addition: graphics, grid, stats, utils which are base packages
 
+REMOVED PACKAGES:
+
+for R in jacob-long/interactions tidyverse/modelr davidgohel/officer cardiomoon/predict3d leeper/prediction cran/psych cardiomoon/rrtable simsem/semTools tidyverse/tibble tidyverse/tidyr; do echo -e "\n\n${R}"; for C in $(curl -s https://raw.githubusercontent.com/${R}/master/NAMESPACE | grep export | cut -d\( -f2 | cut -d\) -f1 | tr '\n' ' '); do grep ${C} *.R | grep -v ":#'" | grep ${C}; done; done
+
+rrtable and 
+ztable are cardiomoon-packages
+
+Installing dependencies
+lavaan, diagram, dplyr, flextable, purrr, rrtable, tidyselect, rlang, ztable, readr
+also installing the dependencies ‘forcats’, ‘haven’, ‘insight’, ‘sjlabelled’, ‘htmlwidgets’, ‘crosstalk’, ‘zip’, ‘uuid’, ‘jsonlite’, ‘tinytex’, ‘systemfonts’, ‘nortest’, ‘sjmisc’, ‘httpuv’, ‘xtable’, ‘sourcetools’, ‘later’, ‘promises’, ‘fastmap’, ‘miniUI’, ‘DT’, ‘mnormt’, ‘pbivnorm’, ‘numDeriv’, ‘shape’, ‘BH’, ‘plogr’, ‘officer’, ‘rmarkdown’, ‘htmltools’, ‘xml2’, ‘data.table’, ‘gdtools’, ‘rvg’, ‘devEMF’, ‘moonBook’, ‘shiny’, ‘editData’, ‘hms’, ‘clipr’
+
+sim_slopes
 =================================================================
 
 CHECK WITH THE ORIGINAL VERSION:
@@ -51,6 +61,14 @@ R/teachers.R	→ integrated into datasets.R
 
 # ===============================================================
 # COPY TO COMMAND LINE FROM HERE
+# ===============================================================
+#
+# remove dependencies for rrtable and ztable
+#
+sed -i "s/rrtable::df2flextable/df2flextable/g" *.R && sed -i "/@importFrom rrtable df2flextable/d" *.R && echo -e "# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/rrtable/master/R/df2flextable.R\n#\n" > df2flextable.R && curl -s https://raw.githubusercontent.com/cardiomoon/rrtable/master/R/df2flextable.R | sed "s/importFrom magrittr/importFrom stringr/g">> df2flextable.R
+
+sed -i "s/ztable::palette2colors/palette2colors/g" *.R && sed -i "s/ztable::ztable/ztable/g" *.R && sed -i "/@importFrom ztable/d" *.R && sed -i "/require(ztable)/d" *.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2flextable.R\n#\n" > ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2flextable.R >> ztable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/print.ztable.html.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/print.ztable.html.R >> ztable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2.R >> ztable.R && echo -e "\n\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable.R >> ztable.R
+
 # ===============================================================
 #
 # condPlot.R		removed dependency on tidyr (expand.R and spread.R as new files; further removed dependency of expand on as_tibble from tidyverse)

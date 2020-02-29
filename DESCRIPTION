@@ -24,11 +24,9 @@ Imports:  jmvcore (>= 0.8.5),
           flextable,
           ggplot2(>= 3.1.1),
           purrr,
-          rrtable,
           stringr,
           tidyselect,
-          rlang,
-          ztable
+          rlang
 RoxygenNote: 7.0.2
 Suggests: knitr,
           readr

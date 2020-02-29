@@ -28,5 +28,7 @@ analyses:
     ns: processR
     menuGroup: processR
     menuTitle: processR
+usesNative: true
+minApp: 1.0.8
 
 ...

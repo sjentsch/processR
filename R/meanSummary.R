@@ -145,7 +145,6 @@ print.meanSummary=function(x,...){
 #' Make mean summary table
 #' @param ... Further argumants to be passed to meanSummary
 #' @param vanilla logical
-#' @importFrom rrtable df2flextable
 #' @export
 #' @examples
 #'labels=list(X="cond",Y="reaction",M="pmi")
@@ -157,7 +156,7 @@ print.meanSummary=function(x,...){
 meanSummaryTable=function(...,vanilla=TRUE){
     x=meanSummary(...)
     mode=ifelse(ncol(x)==4,1,2)
-    ft<- rrtable::df2flextable(x,vanilla=vanilla)
+    ft<- df2flextable(x,vanilla=vanilla)
     if(mode==1) {
         headerlabels=list(X="",name=" ",Y="Y",W="W")
         headerrow=c("","",attr(x,"Y"),attr(x,"W"))

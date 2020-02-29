@@ -67,6 +67,10 @@ items:
       title: 'Correlation Table'
       type: Table
       rows:  0
+      columns:
+          - name: .name
+            title: ""
+            type: text
 
     - name: plotCorr
       title: Correlation Plot

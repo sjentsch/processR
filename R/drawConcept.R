@@ -211,7 +211,6 @@ covar2df=function(covar=list(),df){
 #' @param yinterval numeric. Vertical intervals among labels for nodes and nodes
 #' @param label.pos Integer Position of nodelabels. Choices are one of 1:2
 #' @param drawbox  logical If true, draw rectangle
-#' @importFrom ztable palette2colors
 #' @export
 #' @examples
 #' labels=list(X="estress",M="affect",Y="withdraw")
@@ -667,7 +666,7 @@ if(!is.null(covar)){
 
 if(length(box.col)==1) box.col=rep(box.col,nrow(df))
 if(!is.null(palette)) {
-    box.col=ztable::palette2colors(palette,reverse=reverse)
+    box.col=palette2colors(palette,reverse=reverse)
 }
 for(i in 1:nrow(df)){
     mid=c(df$xpos[i],df$ypos[i])

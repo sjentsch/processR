@@ -3,7 +3,6 @@
 #'@param digits integer indicating the number of decimal places
 #'@param ... Further argument to be passed to ztable
 #'@importFrom dplyr select
-#'@importFrom ztable ztable addcgroup spanCol hlines
 #'@export
 ztable.modelSummary=function(x,digits=NULL,...){
     count=ncol(x)/4
@@ -25,7 +24,7 @@ ztable.modelSummary=function(x,digits=NULL,...){
     x1 <- x %>% select(selected)
     class(x1)="data.frame"
     align=paste0(align,collapse = "")
-    z=ztable::ztable(x1,align=align,...)
+    z=ztable(x1,align=align,...)
 
     newnames=c()
     newModelNames=c()

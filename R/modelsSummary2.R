@@ -208,7 +208,7 @@ modelsSummary2Table=function(x,vanilla=TRUE,mode=1,...){
         align(i=1,align="center",part="header") %>%
         hline(i=gcount,border=fp_border(color="gray", width = 1))
     } else{
-      ft<- res[-length(res)] %>% rrtable::df2flextable(vanilla=vanilla) %>%
+      ft<- res[-length(res)] %>% df2flextable(vanilla=vanilla) %>%
         set_header_labels(name1 = "", name="", coef = "Coef", se="SE",
                           t="t",p="p" )
     }

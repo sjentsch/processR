@@ -76,7 +76,6 @@ adjustypos=function(ypos,ymargin=0.02,rady=0.06,maxypos=0.6,minypos=0,totalOnly=
 #' @param drawbox  logical If true, draw rectangle
 #' @importFrom dplyr arrange
 #' @importFrom diagram segmentarrow curvedarrow
-#' @importFrom ztable palette2colors
 #' @export
 #' @examples
 #' library(lavaan)
@@ -485,7 +484,7 @@ drawModel=function(semfit=NULL,labels=NULL,equation=NULL,
     # str(labels)
     if(length(box.col)==1) box.col=rep(box.col,nrow(nodes))
     if(!is.null(palette)) {
-      box.col=ztable::palette2colors(palette,reverse=reverse)
+      box.col=palette2colors(palette,reverse=reverse)
     }
     for(i in 1:nrow(nodes)){
         xpos=nodes$xpos[i]

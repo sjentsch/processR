@@ -159,7 +159,7 @@ modSummaryTable=function(x,vanilla=TRUE,...){
     x1=x[c(1,2,6,5)]
     colnames(x1)[3]="95% Bootstrap CI"
 
-    rrtable::df2flextable(x1,vanilla=vanilla,digits=3) %>%
+    df2flextable(x1,vanilla=vanilla,digits=3) %>%
         add_footer_lines(attr(x,"eq")) %>%
         align(align="right",part="footer") %>%
         hline_top(part="header",border=fp_border(color="black",width=0)) %>%

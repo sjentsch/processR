@@ -348,7 +348,21 @@ processROptions <- if (requireNamespace('jmvcore')) R6::R6Class(
 processRResults <- if (requireNamespace('jmvcore')) R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$.items[["text"]]),
+        plotConcept = function() private$.items[["plotConcept"]],
+        plotStatist = function() private$.items[["plotStatist"]],
+        textLavaanSyntax = function() private$.items[["textLavaanSyntax"]],
+        textLavaanOutput = function() private$.items[["textLavaanOutput"]],
+        textLmSyntax = function() private$.items[["textLmSyntax"]],
+        textLmOutput = function() private$.items[["textLmOutput"]],
+        tableEstim = function() private$.items[["tableEstim"]],
+        tableCorr = function() private$.items[["tableCorr"]],
+        plotCorr = function() private$.items[["plotCorr"]],
+        tableFit = function() private$.items[["tableFit"]],
+        tableCoeff = function() private$.items[["tableCoeff"]],
+        tableSummary = function() private$.items[["tableSummary"]],
+        plotModer = function() private$.items[["plotModer"]],
+        tableDirIndir = function() private$.items[["tableDirIndir"]],
+        plotDirIndir = function() private$.items[["plotDirIndir"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -356,10 +370,288 @@ processRResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                 options=options,
                 name="",
                 title="processR")
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="plotConcept",
+                title="Concept Diagram",
+                width=600,
+                height=400,
+                renderFun=".plotConcept"))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="plotStatist",
+                title="Statistical Diagram",
+                width=600,
+                height=400,
+                renderFun=".plotStatist"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
-                name="text",
-                title="processR"))}))
+                name="textLavaanSyntax",
+                title="Syntax for lavaan"))
+            self$add(jmvcore::Preformatted$new(
+                options=options,
+                name="textLavaanOutput",
+                title="Output from lavaan"))
+            self$add(jmvcore::Preformatted$new(
+                options=options,
+                name="textLmSyntax",
+                title="Syntax for lm"))
+            self$add(jmvcore::Preformatted$new(
+                options=options,
+                name="textLmOutput",
+                title="Output from lm"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="tableEstim",
+                title="Parameter Estimates",
+                rows=1,
+                columns=list(
+                    list(
+                        `name`="variable", 
+                        `title`="Variables", 
+                        `type`="text"),
+                    list(
+                        `name`="predictor", 
+                        `title`="Predictors", 
+                        `type`="text"),
+                    list(
+                        `name`="B", 
+                        `title`="B", 
+                        `type`="number"),
+                    list(
+                        `name`="SE", 
+                        `title`="SE", 
+                        `type`="number"),
+                    list(
+                        `name`="beta", 
+                        `title`="\u03B2", 
+                        `type`="number"),
+                    list(
+                        `name`="z", 
+                        `title`="z", 
+                        `type`="number"),
+                    list(
+                        `name`="p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="tableCorr",
+                title="Correlation Table",
+                rows=0,
+                columns=list(
+                    list(
+                        `name`=".name", 
+                        `title`="", 
+                        `type`="text"))))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="plotCorr",
+                title="Correlation Plot",
+                width=600,
+                height=600,
+                renderFun=".plotCorr"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="tableFit",
+                title="Model Fit",
+                rows=1,
+                columns=list(
+                    list(
+                        `name`="chisq", 
+                        `title`="\u03C7\u00B2", 
+                        `type`="number"),
+                    list(
+                        `name`="df", 
+                        `title`="df", 
+                        `type`="integer"),
+                    list(
+                        `name`="chisqdf", 
+                        `title`="\u03C7\u00B2 / df", 
+                        `type`="number"),
+                    list(
+                        `name`="p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
+                    list(
+                        `name`="CFI", 
+                        `title`="CFI", 
+                        `type`="number"),
+                    list(
+                        `name`="GFI", 
+                        `title`="GFI", 
+                        `type`="number"),
+                    list(
+                        `name`="AGFI", 
+                        `title`="AGFI", 
+                        `type`="number"),
+                    list(
+                        `name`="TLI", 
+                        `title`="TLI", 
+                        `type`="number"),
+                    list(
+                        `name`="RMR", 
+                        `title`="RMR", 
+                        `type`="number"),
+                    list(
+                        `name`="SRMR", 
+                        `title`="SRMR", 
+                        `type`="number"),
+                    list(
+                        `name`="RMSEA", 
+                        `title`="RMSEA", 
+                        `type`="number"),
+                    list(
+                        `name`="RMSEA_CI", 
+                        `title`="(95% CI)", 
+                        `type`="text"),
+                    list(
+                        `name`="AIC", 
+                        `title`="AIC", 
+                        `type`="number"),
+                    list(
+                        `name`="BIC", 
+                        `title`="BIC", 
+                        `type`="number"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="tableCoeff",
+                title="Summary of Model Coefficients",
+                rows=1,
+                columns=list(
+                    list(
+                        `name`="varName", 
+                        `title`="Antecedent", 
+                        `type`="text"),
+                    list(
+                        `name`="M_B", 
+                        `title`="Coef", 
+                        `type`="number"),
+                    list(
+                        `name`="M_SE", 
+                        `title`="SE", 
+                        `type`="number"),
+                    list(
+                        `name`="M_t", 
+                        `title`="t", 
+                        `type`="number"),
+                    list(
+                        `name`="M_p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
+                    list(
+                        `name`="Y_B", 
+                        `title`="Coef", 
+                        `type`="number"),
+                    list(
+                        `name`="Y_SE", 
+                        `title`="SE", 
+                        `type`="number"),
+                    list(
+                        `name`="Y_t", 
+                        `title`="t", 
+                        `type`="number"),
+                    list(
+                        `name`="Y_p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="tableSummary",
+                title="Summary of Model Fit",
+                rows=1,
+                columns=list(
+                    list(
+                        `name`="varName", 
+                        `title`="Variable", 
+                        `type`="text"),
+                    list(
+                        `name`="N", 
+                        `title`="N", 
+                        `type`="integer"),
+                    list(
+                        `name`="R2", 
+                        `title`="R\u00B2", 
+                        `type`="number"),
+                    list(
+                        `name`="R2adj", 
+                        `title`="adj. R\u00B2", 
+                        `type`="number"),
+                    list(
+                        `name`="resSE", 
+                        `title`="SE (residual)", 
+                        `type`="number"),
+                    list(
+                        `name`="dfSE", 
+                        `title`="SE (df)", 
+                        `type`="integer"),
+                    list(
+                        `name`="dfF", 
+                        `title`="F (df)", 
+                        `type`="text"),
+                    list(
+                        `name`="valF", 
+                        `title`="F", 
+                        `type`="number"),
+                    list(
+                        `name`="p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"))))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="plotModer",
+                title="Moderation Effect",
+                width=600,
+                height=600,
+                renderFun=".plotModer"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="tableDirIndir",
+                title="Overview over conditional direct and indirect effects",
+                rows=1,
+                columns=list(
+                    list(
+                        `name`="varName", 
+                        `title`="", 
+                        `type`="number"),
+                    list(
+                        `name`="dir_Est", 
+                        `title`="Estimate", 
+                        `type`="integer"),
+                    list(
+                        `name`="dir_CI", 
+                        `title`="CI", 
+                        `type`="text"),
+                    list(
+                        `name`="dir_p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
+                    list(
+                        `name`="ind_Est", 
+                        `title`="Estimate", 
+                        `type`="integer"),
+                    list(
+                        `name`="ind_CI", 
+                        `title`="CI", 
+                        `type`="text"),
+                    list(
+                        `name`="ind_p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"))))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="plotDirIndir",
+                title="Conditional Direct and Indirect Effects",
+                width=600,
+                height=600,
+                renderFun=".plotDirIndir"))}))
 
 processRBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     "processRBase",
@@ -413,8 +705,28 @@ processRBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param mctVrZ .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$plotConcept} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$plotStatist} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$textLavaanSyntax} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$textLavaanOutput} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$textLmSyntax} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$textLmOutput} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$tableEstim} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$tableCorr} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$plotCorr} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$tableFit} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$tableCoeff} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$tableSummary} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$plotModer} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$tableDirIndir} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$plotDirIndir} \tab \tab \tab \tab \tab an image \cr
 #' }
+#'
+#' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
+#'
+#' \code{results$tableEstim$asDF}
+#'
+#' \code{as.data.frame(results$tableEstim)}
 #'
 #' @export
 processR <- function(

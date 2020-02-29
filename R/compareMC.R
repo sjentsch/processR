@@ -50,11 +50,9 @@ compareMC=function(fit,mode=1){
 #' @param x An object of class compareMC
 #' @param digits integer indicating the number of decimal places
 #' @param ... further arguments to be passed to ztable
-#' @importFrom ztable ztable addrgroup
 #' @export
 #' @examples
 #' \donttest{
-#' require(ztable)
 #' fit=lm(govact~negemot*age,data=glbwarm)
 #' res=compareMC(fit)
 #' ztable(res)
@@ -211,7 +209,7 @@ compareVIFTable=function(fit,vanilla=TRUE){
     std_border = fp_border(color="black")
     std_border2 = fp_border(color="gray")
 
-    df<- df %>% rrtable::df2flextable(vanilla=vanilla,add.rownames=TRUE) %>%
+    df<- df %>% df2flextable(vanilla=vanilla,add.rownames=TRUE) %>%
         delete_part(part="header") %>%
         bold(i=c(1,5,9),j=1) %>%
         italic(i=c(1,5,9),j=c(2,3,4,6,7)) %>%

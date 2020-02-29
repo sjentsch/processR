@@ -320,7 +320,7 @@ modmedSummaryTable=function(x,vanilla=TRUE,showP=FALSE,...){
         if(addlabel) x1<-x1[-c(5,9)]
         else x1<-x1[-c(4,8)]
     }
-    ft=rrtable::df2flextable(x1,vanilla=TRUE,digits=3)
+    ft=df2flextable(x1,vanilla=TRUE,digits=3)
     ft
     if(showP){
     if(addlabel){
@@ -417,7 +417,7 @@ modmedSummaryTable=function(x,vanilla=TRUE,showP=FALSE,...){
           x1=x1[c(1,2,10,5,6,11,9)]
         }
 
-        ft=rrtable::df2flextable(x1,vanilla=FALSE,digits=3)
+        ft=df2flextable(x1,vanilla=FALSE,digits=3)
 
         ft
         if(addlabel){
@@ -754,7 +754,7 @@ medSummaryTable2=function(x,vanilla=TRUE){
 
     temp=c("type",temp[-length(temp)])
     temp
-    table=rrtable::df2flextable(df,vanilla=vanilla)
+    table=df2flextable(df,vanilla=vanilla)
     table
     col_keys=colnames(df)
     hlabel<-setNames(temp,col_keys)
@@ -796,7 +796,7 @@ medSummaryTable2=function(x,vanilla=TRUE){
     temp=rep(c("estimate","95% Bootstrap CI","p"),count)
     if(attr(x,"se")=="standard") temp[2]="95% CI"
     temp =c("type",temp)
-    table=rrtable::df2flextable(df,vanilla=vanilla)
+    table=df2flextable(df,vanilla=vanilla)
     table
     col_keys=colnames(df)
     hlabel<-setNames(temp,col_keys)

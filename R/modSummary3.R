@@ -141,7 +141,7 @@ getRepValues=function(data,colname,rangemode=2,maxylev=6,digits=digits){
 #' modSummary3Table(fit,mod2.values=c(30,50,70))
 modSummary3Table=function(x,vanilla=TRUE,...){
     if("lm" %in% class(x)) x=modSummary3(x,...)
-    rrtable::df2flextable(x,vanilla=vanilla,digits=3) %>%
+    df2flextable(x,vanilla=vanilla,digits=3) %>%
         add_footer_lines(attr(x,"eq") ) %>%
         align(align="right",part="footer")
 }

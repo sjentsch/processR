@@ -35,7 +35,6 @@ corTable=function(fit){
 #' @param addFooter Logical. If true, footer added
 #' @param seek string to look for
 #' @param replace A string of replacement
-#' @importFrom rrtable df2flextable
 #' @importFrom flextable align color add_footer merge_at
 #' @export
 corTable2=function(fit,vanilla=TRUE,addFooter=FALSE,seek=NULL,replace=NULL){
@@ -47,7 +46,7 @@ corTable2=function(fit,vanilla=TRUE,addFooter=FALSE,seek=NULL,replace=NULL){
     rownames(res)[rownames(res)==seek[i]]=replace[i]
         }
     }
-    Table=rrtable::df2flextable(res,vanilla=vanilla,add.rownames=TRUE)
+    Table=df2flextable(res,vanilla=vanilla,add.rownames=TRUE)
     Table=flextable::align(Table,align="center",part="all")
     Table=flextable::color(Table,i=1,j=1,color=ifelse(vanilla,"white","#5B7778"),part="header")
 
