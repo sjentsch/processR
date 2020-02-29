@@ -11,7 +11,7 @@
 #' r2diff(fit,mode=2)
 r2diff=function(fit,mode=1,digits=3){
 
-    # mode=1; digits=3;all.interaction=TRUE
+      # mode=1; digits=3;all.interaction=TRUE
     fit.r2=summary(fit)$r.squared
     fit.adj.r2=summary(fit)$adj.r.squared
     vars=names(fit$coef)[-1]
@@ -77,3 +77,4 @@ r2diff=function(fit,mode=1,digits=3){
         df
     }
 }
+

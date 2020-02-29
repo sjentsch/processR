@@ -13,6 +13,14 @@ in addition: graphics, grid, stats, utils which are base packages
 
 =================================================================
 
+CHECK WITH THE ORIGINAL VERSION:
+
+git clone git@github.com:cardiomoon/processR.git processR2
+cd R; for F in *.R; do if [ -e ../../processR2/R/${F} ]; then diff -q ${F} ../../processR2/R/${F}; if [ $? -eq 0 ]; then rm ../../processR2/R/${F}; fi; fi; done; cd ..; for F in education.R teachers.R makePPTx.R showModels.R; do rm ../processR2/R/${F}; done; cd man; for F in *.Rd; do if [ -e ../../processR2/man/${F} ]; then diff -q ${F} ../../processR2/man/${F}; if [ $? -eq 0 ]; then rm ../../processR2/man/${F}; fi; fi; done; cd ..
+cd ../processR2/R/; for F in *.R; do meld ../../processR/R/${F} ${F}; diff ../../processR/R/${F} ${F}; if [ $? -eq 0 ]; then rm ${F}; fi; done; cd ../man; for F in *.Rd; do meld ../../processR/man/${F} ${F}; diff ../../processR/man/${F} ${F}; if [ $? -eq 0 ]; then rm ${F}; fi; done; cd ..
+
+=================================================================
+
 CHECK FOR USED PACKAGES:
 
 grep "\:\:" *.R | cut -d: -f2- | grep -v "jmvcore::" | grep -v "stringr::" | grep -v "R6::R6Class" | grep -v "flextable::" | grep -v "rrtable::" | grep -v "tidyselect::" | grep -v "ggplot2::" | grep -v "lavaan::" | grep "\:\:"

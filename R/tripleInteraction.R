@@ -12,9 +12,10 @@
 #' tripleInteraction(vars,mode=1)
 tripleInteraction=function(vars,prefix="c",suffix=0,mode=0,addPrefix=TRUE){
 
-    if (mode) {
+    if(mode){
         temp=paste(vars,collapse="*")
-    } else {
+
+    } else{
     result=vars
     result=c(result,apply(combn(vars,2),2,function(x){paste(x,collapse=":")}))
     result=c(result,paste0("interaction",suffix))
@@ -422,3 +423,4 @@ makeIndirectEquation=function(X,M,temp1,temp2,temp3,moderatorNames,
 
     equation
 }
+
