@@ -1,3 +1,8 @@
+# ------------------------------------------------------------------------------
+# Original content
+# from https://raw.githubusercontent.com/cardiomoon/processR/master/R/condPlotCat.R
+#
+
 #' Make simple regression model with one categorical variable
 #' @param labels Named list of variables
 #' @param yvar Label of the dependent variable. Either "Y"(default) or "M".
@@ -438,8 +443,8 @@ condPlotCat=function(labels=list(),yvar="Y",total=FALSE,data,addvars=TRUE,mode=1
   p
   if(add.point){
     p<-p+ geom_point(data=df,aes_string(x="x",y="y",color="group1"),size=2)+
-#     geom_text_repel(data=df,aes_string(x="x",y="y",label="label",color="group1"),box.padding=1)+
-      geom_text(data=df,aes_string(x="x",y="y",label="label",color="group1"),box.padding=1)+
+      geom_text(data=df,aes_string(x="x",y="y",label="label",color="group1"),
+                      box.padding=1)+
       theme(legend.position="top",legend.title = element_blank())
   }
   p

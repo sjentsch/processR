@@ -23,7 +23,7 @@ cd ../processR2/R/; for F in *.R; do meld ../../processR/R/${F} ${F}; diff ../..
 
 CHECK FOR USED PACKAGES:
 
-grep "\:\:" *.R | cut -d: -f2- | grep -v "jmvcore::" | grep -v "stringr::" | grep -v "R6::R6Class" | grep -v "flextable::" | grep -v "rrtable::" | grep -v "tidyselect::" | grep -v "ggplot2::" | grep -v "lavaan::" | grep "\:\:"
+grep "\:\:" *.R | cut -d: -f2- | grep -v "jmvcore::" | grep -v "stringr::" | grep -v "R6::R6Class" | grep -v "flextable::" | grep -v "rrtable::" | grep -v "tidyselect::" | grep -v "ggplot2::" | grep -v "lavaan::" | grep -v "dplyr::" | grep -v "^#'" | grep "\:\:"
 
 YET UNRESOLVED:
 johnson_neyman.R
@@ -45,47 +45,61 @@ spread.R	→ from tidyr (details see below)
 
 =================================================================
 
-FILES CHANGED BY cardiomoon
-predict3d and ggiraphExtra:
-predict3d	→ functions fit2newdata, add_lines, calEquation, theme_bw2 moved to internal.R (cardiomoon did)
-ggiraphExtra	→ function  ggCor moved to internal (cardiomoon did)
-
-=================================================================
-
 FILES MANUALLY CHANGED
 R/education.R	→ integrated into datasets.R
 R/teachers.R	→ integrated into datasets.R
 
-R/condPlotCat.R → changed to geom_text (in order to remove dependency for ggrepel)
+# ===============================================================
+# COPY TO COMMAND LINE FROM HERE
+# ===============================================================
+#
+# condPlot.R		removed dependency on tidyr (expand.R and spread.R as new files; further removed dependency of expand on as_tibble from tidyverse)
+#			removed dependency on interactions (johnson_neyman.R as new file, while removing print.johnson_neyman function from inside this file)
+#
+echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/tidyverse/tibble/master/R/as_tibble.R\n#\n" > expand.R && curl -s https://raw.githubusercontent.com/tidyverse/tibble/master/R/as_tibble.R >> expand.R && echo -e "\n\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/tidyverse/tidyr/master/R/expand.R\n#\n" >> expand.R && curl -s https://raw.githubusercontent.com/tidyverse/tidyr/master/R/expand.R | sed "s/tibble::as_tibble/as_tibble/g" >> expand.R
+curl -s https://raw.githubusercontent.com/tidyverse/tidyr/master/R/spread.R | grep -v "lifecycle::badge" > spread.R
+
+echo -e "# Original content\n# from https://raw.githubusercontent.com/jacob-long/interactions/master/R/johnson_neyman.R\n#\n" > johnson_neyman.R && curl -s https://raw.githubusercontent.com/jacob-long/interactions/master/R/johnson_neyman.R >> johnson_neyman.R
 
 interactions	used in condPlot.R		→ download from https://raw.githubusercontent.com/jacob-long/interactions/master/R/johnson_neyman.R
 						→ remove print.johnson_neyman function
 
-=================================================================
-
-psych		used in CorPlot.R
-curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/CorPlot.R | grep -v "importFrom psych alpha" | sed "s/psych::alpha/alpha/" | sed "s/alpha<-/cron_alpha<-/" | sed "s/alpha=c(alpha/cron_alpha=c(cron_alpha/" | sed "s/alpha=round(alpha/cron_alpha=round(cron_alpha/" | sed "s/indicators,alpha,lambda6/indicators,cron_alpha,lambda6/" > CorPlot.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cran/psych/master/R/alpha.R\n#\n" >> CorPlot.R && curl -s https://raw.githubusercontent.com/cran/psych/master/R/alpha.R >> CorPlot.R
-
-=================================================================
-
-semTools	used in reliabilityTable.R
-echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R\n#" > reliabilityTable.R && curl -s https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R | grep "^pmnorm" -A14 >> reliabilityTable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R | sed "s/mnormt::pmnorm/pmnorm/g" >> reliabilityTable.R && echo -e "\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R | grep -v "importFrom semTools reliability" | sed "s/semTools::reliability/reliability/g" >> reliabilityTable.R
-
-=================================================================
-
-tidyr 		used in condPlot.R
-echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/tidyverse/tibble/master/R/as_tibble.R\n#\n" > expand.R && curl -s https://raw.githubusercontent.com/tidyverse/tibble/master/R/as_tibble.R >> expand.R && echo -e "\n\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/tidyverse/tidyr/master/R/expand.R\n#\n" >> expand.R && curl -s https://raw.githubusercontent.com/tidyverse/tidyr/master/R/expand.R | sed "s/tibble::as_tibble/as_tibble/g" >> expand.R
-curl -s https://raw.githubusercontent.com/tidyverse/tidyr/master/R/spread.R | grep -v "lifecycle::badge" > spread.R
-
-=================================================================
-
-predict3d	download and modify ggPredict.R
+# ===============================================================
+#
+# condPlot2.R		removed dependency from predict3d (ggPredict.R as new file; removed further dependencies on seq_range from prediction and typical from modelr)
+#
 echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/leeper/prediction/master/R/seq_range.R\n#" > ggPredict.R && curl -s https://raw.githubusercontent.com/leeper/prediction/master/R/seq_range.R >> ggPredict.R && echo -e "\n# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/tidyverse/modelr/master/R/typical.R\n#" >> ggPredict.R && curl -s https://raw.githubusercontent.com/tidyverse/modelr/master/R/typical.R >> ggPredict.R &&  echo -e "\n# ------------------------------------------------------------------------------\n# All content below is from the original main file\n# from https://raw.githubusercontent.com/cardiomoon/predict3d/master/R/ggPredict.R\n#" >> ggPredict.R && curl -s https://raw.githubusercontent.com/cardiomoon/predict3d/master/R/ggPredict.R | sed "s/magrittr/stringr/g" | grep -v "prediction seq_range" | sed 's/modelr::typical/typical/g' | grep -v "modelr typical" >> ggPredict.R
 
-=================================================================
+# ===============================================================
+#
+# condPlotCat.R 	remove dependency for ggrepel (changed to geom_text_repel to geom_text)
+#
+echo -e "# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/processR/master/R/condPlotCat.R\n#\n" > condPlotCat.R && curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/condPlotCat.R | grep -v "@importFrom ggrepel" | sed "s/geom_text_repel/geom_text/g" >> condPlotCat.R
 
-officer		used in modelsSummary.R
+# ===============================================================
+#
+# CorPlot.R		removed dependency on psych (Calculation of Cronbachs alpha)
+#
+curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/CorPlot.R | grep -v "importFrom psych alpha" | sed "s/psych::alpha/alpha/" | sed "s/alpha<-/cron_alpha<-/" | sed "s/alpha=c(alpha/cron_alpha=c(cron_alpha/" | sed "s/alpha=round(alpha/cron_alpha=round(cron_alpha/" | sed "s/indicators,alpha,lambda6/indicators,cron_alpha,lambda6/" > CorPlot.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cran/psych/master/R/alpha.R\n#\n" >> CorPlot.R && curl -s https://raw.githubusercontent.com/cran/psych/master/R/alpha.R >> CorPlot.R
+
+# ===============================================================
+#
+# internal.R		added several functions from predict3d (add_lines, used in several functions within processR)
+#
+curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/internal.R > internal.R && echo -e "\n# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/predict3d/master/R/add_lines.R\n#\n" >> internal.R && curl -s https://raw.githubusercontent.com/cardiomoon/predict3d/master/R/add_lines.R >> internal.R
+
+# ===============================================================
+#
+# modelsSummary.R	removed dependency on officer
+#
 curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/modelsSummary.R | grep -v "require(officer)" | grep -v "importFrom officer" > modelsSummary.R
 wget https://raw.githubusercontent.com/davidgohel/officer/master/R/formatting_properties.R
 
-=================================================================
+# ===============================================================
+#
+# reliabilityTable.R	removed dependency on semTools (reliability and dependency of reliability on mnormt)
+#
+echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R\n#" > reliabilityTable.R && curl -s https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R | grep "^pmnorm" -A14 >> reliabilityTable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R | sed "s/mnormt::pmnorm/pmnorm/g" >> reliabilityTable.R && echo -e "\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R | grep -v "importFrom semTools reliability" | sed "s/semTools::reliability/reliability/g" >> reliabilityTable.R
+
+# ===============================================================
+
