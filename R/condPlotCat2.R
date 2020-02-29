@@ -189,3 +189,5 @@ unfold=function(string,var="W",mode=-1) {
     }
     result
 }
+
+

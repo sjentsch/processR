@@ -20,6 +20,7 @@ getBootData=function(semfit,what="coef.boot",...){
         cat("install.packages('lavaan',repos='http://www.da.ugent.be',type='source')\n")
     }
     as.data.frame(lavTech(semfit, what=what, add.labels = TRUE,...))
+
 }
 
 
@@ -60,10 +61,8 @@ densityPlot=function(x,sig=0.05,digits=3,xlab="Indirect effect(ab)",ylab=NULL){
         geom_vline(xintercept=xintercept[2],lty=2)+
         annotate("text",x=xintercept[1],y=res$ymax,label=labels[1],hjust=1.1)+
         annotate("text",x=xintercept[2],y=res$ymax,label=labels[2],hjust=-0.1)+
-        labs(x=xlab,y=ylab) +
-        theme_bw() +
-        theme(panel.grid.major = element_blank(),
-              panel.grid.minor = element_blank())
+        labs(x=xlab,y=ylab)+
+        theme_bw2()
     p
 }
 
@@ -84,10 +83,8 @@ qqPlot=function(x,linecolor="red",xlab=NULL,ylab=NULL,title=NULL,...){
     if(is.null(ylab)) ylab="Sample Quantiles"
     if(is.null(title)) title="Normal Q-Q Plot"
     ggplot(data=as.data.frame(x),aes(sample=x))+geom_qq(...)+
-        geom_qq_line(col=linecolor) +
-        labs(title=title,x=xlab,y=ylab) +
-        theme_bw() +
-        theme(panel.grid.major = element_blank(),
-              panel.grid.minor = element_blank(),
-              plot.title = element_text(hjust=0.5))
+        geom_qq_line(col=linecolor)+
+        theme_bw2()+
+        labs(title=title,x=xlab,y=ylab)+
+        theme(plot.title=element_text(hjust=0.5))
 }

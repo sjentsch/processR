@@ -71,9 +71,7 @@ conditionalEffectPlot=function(semfit,values=NULL,data,no=1,
         geom_text(data=df,aes_string(x="x",y="y",label="label",angle="angle"),color=color,fontface="italic",vjust=1.5)+
         guides(color=FALSE)+
         xlab(paste0(mod,"(W)"))+ylab("Conditional Effects")+
-        theme_bw() +
-        theme(panel.grid.major = element_blank(),
-              panel.grid.minor = element_blank())
+        theme_bw2()
 }
 
 #'Make equation from function

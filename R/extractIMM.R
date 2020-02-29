@@ -57,3 +57,4 @@ extractIMM=function(string){
     if(str_detect(result,"W")) return(NULL)
     result
 }
+

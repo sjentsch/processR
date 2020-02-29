@@ -1,11 +1,239 @@
 ---
-name:  processR
-title: processR
+name: processR
+title: 'processR'
 jrs:   '1.1'
 
 items:
-    - name:  text
-      title: processR
+
+    - name: plotConcept
+      title: 'Concept Diagram'
+      type: Image
+      width:  600
+      height: 400
+      renderFun: .plotConcept
+
+    - name: plotStatist
+      title: 'Statistical Diagram'
+      type: Image
+      width:  600
+      height: 400
+      renderFun: .plotStatist
+
+    - name: textLavaanSyntax
+      title: 'Syntax for lavaan'
       type:  Preformatted
+
+    - name: textLavaanOutput
+      title: 'Output from lavaan'
+      type:  Preformatted
+
+    - name: textLmSyntax
+      title: 'Syntax for lm'
+      type:  Preformatted
+
+    - name: textLmOutput
+      title: 'Output from lm'
+      type:  Preformatted
+
+    - name: tableEstim
+      title: 'Parameter Estimates'
+      type: Table
+      rows: 1
+      columns:
+        - name: variable
+          title: 'Variables'
+          type: text
+        - name: predictor
+          title: 'Predictors'
+          type: text
+        - name: B
+          title: 'B'
+          type: number
+        - name: SE
+          title: 'SE'
+          type: number
+        - name: beta
+          title: 'β'
+          type: number
+        - name: z
+          title: 'z'
+          type: number
+        - name: p
+          title: 'p'
+          type: number
+          format: zto,pvalue
+
+    - name: tableCorr
+      title: 'Correlation Table'
+      type: Table
+      rows:  0
+
+    - name: plotCorr
+      title: Correlation Plot
+      type: Image
+      width:  600
+      height: 600
+      renderFun: .plotCorr
+
+    - name: tableFit
+      title: 'Model Fit'
+      type: Table
+      rows: 1
+      columns:
+        - name: chisq
+          title: 'χ²'
+          type: number
+        - name: df
+          title: 'df'
+          type: integer
+        - name: chisqdf
+          title: 'χ² / df'
+          type: number
+        - name: p
+          title: 'p'
+          type: number
+          format: zto,pvalue
+        - name: CFI
+          title: 'CFI'
+          type: number
+        - name: GFI
+          title: 'GFI'
+          type: number
+        - name: AGFI
+          title: 'AGFI'
+          type: number
+        - name: TLI
+          title: 'TLI'
+          type: number
+        - name: RMR
+          title: 'RMR'
+          type: number
+        - name: SRMR
+          title: 'SRMR'
+          type: number
+        - name: RMSEA
+          title: 'RMSEA'
+          type: number
+        - name: RMSEA_CI
+          title: '(95% CI)'
+          type: text
+        - name: AIC
+          title: 'AIC'
+          type: number
+        - name: BIC
+          title: 'BIC'
+          type: number
+
+    - name: tableCoeff
+      title: 'Summary of Model Coefficients'
+      type: Table
+      rows: 1
+      columns:
+        - name: varName
+          title: 'Antecedent'
+          type: text
+        - name: M_B
+          title: 'Coef'
+          type: number
+        - name: M_SE
+          title: 'SE'
+          type: number
+        - name: M_t
+          title: 't'
+          type: number
+        - name: M_p
+          title: 'p'
+          type: number
+          format: zto,pvalue
+        - name: Y_B
+          title: 'Coef'
+          type: number
+        - name: Y_SE
+          title: 'SE'
+          type: number
+        - name: Y_t
+          title: 't'
+          type: number
+        - name: Y_p
+          title: 'p'
+          type: number
+          format: zto,pvalue
+
+    - name: tableSummary
+      title: 'Summary of Model Fit'
+      type: Table
+      rows: 1
+      columns:
+        - name: varName
+          title: 'Variable'
+          type: text
+        - name: N
+          title: 'N'
+          type: integer
+        - name: R2
+          title: 'R²'
+          type: number
+        - name: R2adj
+          title: 'adj. R²'
+          type: number
+        - name: resSE
+          title: 'SE (residual)'
+          type: number
+        - name: dfSE
+          title: 'SE (df)'
+          type: integer
+        - name: dfF
+          title: 'F (df)'
+          type: text
+        - name: valF
+          title: 'F'
+          type: number
+        - name: p
+          title: 'p'
+          type: number
+          format: zto,pvalue
+
+    - name: plotModer
+      title: 'Moderation Effect'
+      type: Image
+      width:  600
+      height: 600
+      renderFun: .plotModer
+
+    - name: tableDirIndir
+      title: 'Overview over conditional direct and indirect effects'
+      type: Table
+      rows: 1
+      columns:
+        - name: varName
+          title: ''
+          type: number
+        - name: dir_Est
+          title: 'Estimate'
+          type: integer
+        - name: dir_CI
+          title: 'CI'
+          type: text
+        - name: dir_p
+          title: 'p'
+          type: number
+          format: zto,pvalue
+        - name: ind_Est
+          title: 'Estimate'
+          type: integer
+        - name: ind_CI
+          title: 'CI'
+          type: text
+        - name: ind_p
+          title: 'p'
+          type: number
+          format: zto,pvalue
+
+    - name: plotDirIndir
+      title: 'Conditional Direct and Indirect Effects'
+      type: Image
+      width:  600
+      height: 600
+      renderFun: .plotDirIndir
 
 ...

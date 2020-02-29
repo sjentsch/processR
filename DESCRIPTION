@@ -23,14 +23,9 @@ Imports:  jmvcore (>= 0.8.5),
           dplyr,
           flextable,
           ggplot2(>= 3.1.1),
-          ggrepel,
-          interactions,
-          officer,
           purrr,
           rrtable,
-          semTools,
           stringr,
-          TH.data,
           tidyselect,
           rlang,
           ztable
@@ -38,5 +33,3 @@ RoxygenNote: 7.0.2
 Suggests: knitr,
           readr
 VignetteBuilder: knitr
-
-#O        tidyr,
