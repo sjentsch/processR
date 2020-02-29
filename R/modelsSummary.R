@@ -502,12 +502,12 @@ centerPrint=function(string,width){
 numberSubscript=function(ft,label,vanilla){
   add=ifelse(vanilla,1,0)
   for(i in seq_along(label)){
-
-    temp=paste0("compose(ft,j=",(i-1)*(5+add)+2,
-             ",value=as_paragraph(
-              as_i(stringr::str_extract(",label[i],",'[^0-9yYmM]*')),
-              as_i(as_sub(stringr::str_extract(",label[i],",'[0-9yYmM].*')))),
-            part='body')")
+    temp=paste0("display(ft, col_key = '",label[i],
+                "', pattern = '{{A}}{{a}}',
+                  formatters = list(A ~ stringr::str_extract(",label[i],",'[^0-9yYmM]*'),
+                                    a~ stringr::str_extract(",label[i],",'[0-9yYmM].*')),
+                  fprops = list(A=fp_text(italic=TRUE),a=fp_text(vertical.align='subscript',italic=TRUE)),
+                  part='body')")
     ft<-eval(parse(text=temp))
   }
   ft
@@ -547,11 +547,7 @@ modelsSummaryTable=function(x=NULL,vanilla=TRUE,...){
       # vanilla=TRUE
       # require(tidyverse)
       # require(flextable)
-      # fit1=lm(mpg~wt,data=mtcars)
-      # fit2=lm(mpg~wt*hp,data=mtcars)
-      # labels=list(X="wt",W="hp",Y="mpg",Z="am")
       # x=modelsSummary(list(fit1,fit2))
-
     if(is.null(x)) {
        x=modelsSummary(...)
     }
@@ -629,7 +625,6 @@ modelsSummaryTable=function(x=NULL,vanilla=TRUE,...){
     length(col_keys)
     count
     colcount
-    ft
     ft <- add_header_row(ft,values=hlabel,top=TRUE,
                          colwidths=rep(1,count*colcount+ifelse(vanilla,0,1)))
     ft <- ft %>%
