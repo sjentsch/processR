@@ -35,7 +35,7 @@ color2hex=function(color){
 #' @export
 #' @examples
 #' require(RColorBrewer)
-#' require(magrittr)
+#' require(stringr)
 #' palette2colors("Reds")
 #' ztable(head(mtcars,10)) %>%
 #'      addColColor(cols=1:12,bg=palette2colors("Set3"))
@@ -113,7 +113,7 @@ roundDf=function(df,digits=2){
 #' @importFrom officer fp_border
 #' @export
 #' @examples
-#' require(magrittr)
+#' require(stringr)
 #' z=ztable(head(mtcars)) %>%
 #'    addRowColor(rows=1:7,palette2colors("Paired"))
 #' z=ztable(head(mtcars))
@@ -1145,7 +1145,7 @@ ztable2viewer=function(z){
 #' @param bg A character vector indicating background color
 #' @param color A character vector indicating color
 #' @param condition Logical expression to select rows
-#' @importFrom magrittr "%>%"
+#' @importFrom stringr "%>%"
 #' @export
 #' @examples
 #' z=ztable(head(iris))

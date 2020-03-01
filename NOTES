@@ -66,11 +66,47 @@ R/teachers.R	→ integrated into datasets.R
 # COPY TO COMMAND LINE FROM HERE
 # ===============================================================
 #
+# handle error with stringr (sometimes not imported)
+# 
+conceptDiagram.R:#' @importFrom stringr str_flatten stringr::str_detect str_extract_all str_replace str_extract
+conceptDiagram.R:#'@importFrom stringr str_split
+condPlotCat2.R:#' @importFrom stringr str_count
+CorPlot.R:#' @importFrom stringr str_flatten
+df2flextable.R:#' @importFrom stringr "%>%"
+ggPredict.R:#'@importFrom stringr "%>%"
+ggPredict.R:#'@importFrom stringr stringr::str_detect str_replace str_replace_all
+makeEquation.R:#' @importFrom stringr str_trim
+modelsSummary2.R:#' @importFrom stringr "%>%"
+modelsSummary.R:#' @importFrom stringr "%>%"
+modelsSummary.R:#'@importFrom stringr str_pad
+modelsSummary.R:#'@importFrom stringr str_extract
+modmedEquation.R:#' @importFrom stringr fixed
+modmedEquation.R:#' @importFrom stringr str_replace_all stringr::str_detect
+multipleMediation.R:#' @importFrom stringr str_replace_all
+multipleMediation.R:#' @importFrom stringr str_replace_all
+tripleInteraction.R:#' @importFrom stringr str_replace_all
+ztable.R:#' @importFrom stringr str_flatten stringr::str_detect
+ztable.R:#' @importFrom stringr str_remove_all fixed
+ztable.R:#' @importFrom stringr "%>%"
+
+sed -i "/@importFrom stringr stringr::str_detect$/d" *.R
+addCatVars.R:#' @importFrom stringr stringr::str_detect
+conceptDiagram.R:#' @importFrom stringr str_flatten stringr::str_detect str_extract_all str_replace str_extract
+ggPredict.R:#'@importFrom stringr stringr::str_detect str_replace str_replace_all
+modmedEquation.R:#' @importFrom stringr stringr::str_detect
+modmedEquation.R:#' @importFrom stringr str_replace_all stringr::str_detect
+modSummary2.R:#' @importFrom stringr stringr::str_detect
+multipleMediation.R:#' @importFrom stringr stringr::str_detect
+r2diff.R:#' @importFrom stringr stringr::str_detect
+ztable.R:#' @importFrom stringr str_flatten stringr::str_detect
+
+
+#
 # remove dependencies for rrtable and ztable
 #
 sed -i "s/rrtable::df2flextable/df2flextable/g" *.R && sed -i "/@importFrom rrtable df2flextable/d" *.R && echo -e "# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/rrtable/master/R/df2flextable.R\n#\n" > df2flextable.R && curl -s https://raw.githubusercontent.com/cardiomoon/rrtable/master/R/df2flextable.R | sed "s/importFrom magrittr/importFrom stringr/g">> df2flextable.R
 
-sed -i "s/ztable::palette2colors/palette2colors/g" *.R && sed -i "s/ztable::ztable/ztable/g" *.R && sed -i "/@importFrom ztable/d" *.R && sed -i "/require(ztable)/d" *.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2flextable.R\n#\n" > ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2flextable.R >> ztable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/print.ztable.html.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/print.ztable.html.R >> ztable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2.R >> ztable.R && echo -e "\n\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable.R >> ztable.R
+sed -i "s/ztable::palette2colors/palette2colors/g" *.R && sed -i "s/ztable::ztable/ztable/g" *.R && sed -i "/@importFrom ztable/d" *.R && sed -i "/require(ztable)/d" *.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2flextable.R\n#\n" > ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2flextable.R >> ztable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/print.ztable.html.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/print.ztable.html.R >> ztable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable2.R >> ztable.R && echo -e "\n\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable.R\n#\n" >> ztable.R && curl -s https://raw.githubusercontent.com/cardiomoon/ztable/master/R/ztable.R >> ztable.R && sed -i "s/magrittr/stringr/g" ztable.R
 
 # ===============================================================
 #
