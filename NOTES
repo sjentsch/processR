@@ -2,28 +2,18 @@ diagram		→ several occurences
 dplyr		→ several occurences
 flextable	→ several occurences
 ggplot2		→ several occurences
+lavaan
 purrr		→ several occurences
 rlang		→ several occurences
 stringr		→ several occurences
 tidyselect	→ several occurences
 
-in addition: graphics, grid, stats, utils which are base packages
+in addition: graphics, grDevices, grid, methods, stats, utils which are base packages
 
 REMOVED PACKAGES:
 
 for R in jacob-long/interactions tidyverse/modelr davidgohel/officer cardiomoon/predict3d leeper/prediction cran/psych cardiomoon/rrtable simsem/semTools tidyverse/tibble tidyverse/tidyr; do echo -e "\n\n${R}"; for C in $(curl -s https://raw.githubusercontent.com/${R}/master/NAMESPACE | grep export | cut -d\( -f2 | cut -d\) -f1 | tr '\n' ' '); do grep ${C} *.R | grep -v ":#'" | grep ${C}; done; done
 
-lavaan (mnormt, pbivnorm, numDeriv)
-diagram (shape)
-dplyr (BH, plogr)
-flextable (officer, rmarkdown, htmltools, xml2, data.table, gdtools
-purrr 
-rlang, readr
-
-lavaan, diagram, dplyr, flextable, purrr, tidyselect, rlang, readr
-also installing the dependencies ‘zip’, ‘uuid’, ‘jsonlite’, ‘tinytex’, ‘systemfonts’, ‘mnormt’, ‘pbivnorm’, ‘numDeriv’, ‘shape’, ‘BH’, ‘plogr’, ‘officer’, ‘rmarkdown’, ‘htmltools’, ‘xml2’, ‘data.table’, ‘gdtools’, ‘hms’, ‘clipr’
-
-sim_slopes
 =================================================================
 
 CHECK WITH THE ORIGINAL VERSION:
@@ -41,6 +31,9 @@ grep "\:\:" *.R | cut -d: -f2- | grep -v "jmvcore::" | grep -v "stringr::" | gre
 YET UNRESOLVED:
 johnson_neyman.R
 lme4::fixef(model)
+
+ztable.R
+colors = brewer.pal(RColorBrewer::brewer.pal.info[rownames(brewer.pal.info) ==
 
 =================================================================
 
@@ -66,42 +59,11 @@ R/teachers.R	→ integrated into datasets.R
 # COPY TO COMMAND LINE FROM HERE
 # ===============================================================
 #
-# handle error with stringr (sometimes not imported)
-# 
-conceptDiagram.R:#' @importFrom stringr str_flatten stringr::str_detect str_extract_all str_replace str_extract
-conceptDiagram.R:#'@importFrom stringr str_split
-condPlotCat2.R:#' @importFrom stringr str_count
-CorPlot.R:#' @importFrom stringr str_flatten
-df2flextable.R:#' @importFrom stringr "%>%"
-ggPredict.R:#'@importFrom stringr "%>%"
-ggPredict.R:#'@importFrom stringr stringr::str_detect str_replace str_replace_all
-makeEquation.R:#' @importFrom stringr str_trim
-modelsSummary2.R:#' @importFrom stringr "%>%"
-modelsSummary.R:#' @importFrom stringr "%>%"
-modelsSummary.R:#'@importFrom stringr str_pad
-modelsSummary.R:#'@importFrom stringr str_extract
-modmedEquation.R:#' @importFrom stringr fixed
-modmedEquation.R:#' @importFrom stringr str_replace_all stringr::str_detect
-multipleMediation.R:#' @importFrom stringr str_replace_all
-multipleMediation.R:#' @importFrom stringr str_replace_all
-tripleInteraction.R:#' @importFrom stringr str_replace_all
-ztable.R:#' @importFrom stringr str_flatten stringr::str_detect
-ztable.R:#' @importFrom stringr str_remove_all fixed
-ztable.R:#' @importFrom stringr "%>%"
-
-sed -i "/@importFrom stringr stringr::str_detect$/d" *.R
-addCatVars.R:#' @importFrom stringr stringr::str_detect
-conceptDiagram.R:#' @importFrom stringr str_flatten stringr::str_detect str_extract_all str_replace str_extract
-ggPredict.R:#'@importFrom stringr stringr::str_detect str_replace str_replace_all
-modmedEquation.R:#' @importFrom stringr stringr::str_detect
-modmedEquation.R:#' @importFrom stringr str_replace_all stringr::str_detect
-modSummary2.R:#' @importFrom stringr stringr::str_detect
-multipleMediation.R:#' @importFrom stringr stringr::str_detect
-r2diff.R:#' @importFrom stringr stringr::str_detect
-ztable.R:#' @importFrom stringr str_flatten stringr::str_detect
-
-
+# resolve that libraries are sometimes not loaded
 #
+for P in $(grep importFrom *.R | cut -d@ -f2 | sed "s/importFrom //g" | awk '{print $1}' | sort | uniq | tr '\n' ' '); do echo ${P}; for C in $(grep "importFrom ${P}" *.R | grep -v "%>%" | cut -d@ -f2 | sed "s/importFrom ${P} //g" | tr ' ' '\n' | sort | uniq | tr '\n' ' '); do if [ "${P}::${C}" != "flextable::italic" ] && [ "${P}::${C}" != "flextable::bold" ] && [ "${P}::${C}" != "grid::arrow" ]; then sed -i "s/${P}::${P}::${C}/${P}::${C}/g" *.R && sed -i "s/${C}(/${P}::${C}(/g" *.R && sed -i "s/${P}::${P}::${C}/${P}::${C}/g" *.R; done; done; sed -i "s/diagram::curvedgrid::arrow/diagram::curvedarrow/g" *.R && sed -i "s/diagram::segmentgrid::arrow/diagram::segmentarrow/g" *.R && sed -i "s/diagram::straightgrid::arrow/diagram::straightarrow/g" *.R && sed -i "s/diagram::textgraphics::rect/diagram::textrect/g" *.R && sed -i "s/ggplot2::geom_graphics::text/ggplot2::geom_text/g" *.R && sed -i "s/ggplot2::coord_stringr::fixed/ggplot2::coord_fixed/g" *.R && sed -i "s/ggplot2::element_graphics::text/ggplot2::element_text/g" *.R && sed -i "s/stats::gstats::lm/stats::glm/g" *.R && sed -i "s/ggplot2::geom_flextable::hline/ggplot2::geom_hline/g" *.R && sed -i "s/ggplot2::geom_flextable::vline/ggplot2::geom_vline/g" *.R && sed -i "s/ggplot2::grid::unit/ggplot2::unit/g" *.R && sed -i "s/flextable::as_flextable::flextable/flextable::as_flextable/g" *.R && sed -i "s/jmvcore::rlang::enquo/jmvcore::enquo/g" *.R && sed -i "s/mygrid::arrow/myarrow/g" *.R && sed -i "s/drawgraphics::text/drawtext/g" *.R
+
+
 # remove dependencies for rrtable and ztable
 #
 sed -i "s/rrtable::df2flextable/df2flextable/g" *.R && sed -i "/@importFrom rrtable df2flextable/d" *.R && echo -e "# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/rrtable/master/R/df2flextable.R\n#\n" > df2flextable.R && curl -s https://raw.githubusercontent.com/cardiomoon/rrtable/master/R/df2flextable.R | sed "s/importFrom magrittr/importFrom stringr/g">> df2flextable.R
@@ -149,14 +111,13 @@ curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/internal.
 #
 # modelsSummary.R	removed dependency on officer
 #
-curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/modelsSummary.R | grep -v "require(officer)" | grep -v "importFrom officer" > modelsSummary.R
-wget https://raw.githubusercontent.com/davidgohel/officer/master/R/formatting_properties.R
+curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/modelsSummary.R | grep -v "require(officer)" | grep -v "importFrom officer" > modelsSummary.R && curl -s https://raw.githubusercontent.com/davidgohel/officer/master/R/formatting_properties.R > formatting_properties.R && sed -i "/@importFrom officer/d" df2flextable.R && sed -i "/require(officer)/d" df2flextable.R && sed -i "/@importFrom officer/d" ztable.R
 
 # ===============================================================
 #
 # reliabilityTable.R	removed dependency on semTools (reliability and dependency of reliability on mnormt)
 #
-echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R\n#" > reliabilityTable.R && curl -s https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R | grep "^pmnorm" -A14 >> reliabilityTable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R | sed "s/mnormt::pmnorm/pmnorm/g" >> reliabilityTable.R && echo -e "\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R | grep -v "importFrom semTools reliability" | sed "s/semTools::reliability/reliability/g" >> reliabilityTable.R
+echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R\n#" > reliabilityTable.R && curl -s https://raw.githubusercontent.com/cran/mnormt/master/R/mnormt.R | grep "^pmnorm" -A14 >> reliabilityTable.R && echo -e "# ------------------------------------------------------------------------------\n# from https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/simsem/semTools/master/semTools/R/reliability.R | sed "s/mnormt::pmnorm/pmnorm/g" >> reliabilityTable.R && echo -e "\n# ------------------------------------------------------------------------------\n# Original content\n# from https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R\n#" >> reliabilityTable.R && curl -s https://raw.githubusercontent.com/cardiomoon/processR/master/R/reliabilityTable.R | grep -v "importFrom semTools reliability" | sed "s/semTools::reliability/reliability/g" | grep -v "importFrom semTools reliability" >> reliabilityTable.R
 
 # ===============================================================
 

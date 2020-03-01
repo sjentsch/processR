@@ -1062,7 +1062,6 @@ calcMaximalReliaCat <- function(polyr, threshold, denom, nitem, varnames) {
 #
 #' make discriminant Validity Table
 #' @param fit An object of a class lavaan
-#' @importFrom semTools reliability
 #' @importFrom lavaan inspect
 #' @export
 discriminantValidityTable=function(fit){
